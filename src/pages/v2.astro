@@ -1,0 +1,789 @@
+---
+// Version 2: Terminal/Hacker Aesthetic
+// Inspired by: Terminal interfaces, Neovim, CRT monitors, hacker culture
+// Aesthetic: Green phosphor text, scanlines, command-line interface feel
+import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '../data/portfolio';
+
+const asciiHeader = ` ____  _   _ ____  ____      _    
+|  _ \\| | | |  _ \\|  _ \\    / \\   
+| |_) | | | | | | | |_) |  / _ \\  
+|  _ &lt;| |_| | |_| |  _ &lt;  / ___ \\ 
+|_| \\_\\\\___/|____/|_| \\_\\/_/   \\_\\
+                                  
+ ____   _  _____ _____ _     
+|  _ \\ / \\|_   _| ____| |    
+| |_) / _ \\ | | |  _| | |    
+|  __/ ___ \\| | | |___| |___ 
+|_| /_/   \\_\\_| |_____|_____|`;
+
+const neovimAscii = `    _   __                _         
+   / | / /__  ____ _   __(_)___ ___ 
+  /  |/ / _ \\/ __ \\ | / / / __ \` __ \\
+ / /|  /  __/ /_/ / |/ / / / / / / /
+/_/ |_/\\___/\\____/|___/_/_/ /_/ /_/ `;
+
+const footerAscii = `  _____
+ / ____|
+| |  __  ___
+| | |_ |/ _ \\
+| |__| | (_) |
+ \\_____|\\___|  build something`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={siteMetadata.description} />
+    <title>{siteMetadata.title} | v2</title>
+    
+    <!-- JetBrains Mono for authentic terminal feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --bg: #0d1117;
+        --bg-secondary: #161b22;
+        --green: #39ff14;
+        --green-dim: #1a5f0a;
+        --cyan: #00ffff;
+        --yellow: #ffff00;
+        --magenta: #ff00ff;
+        --red: #ff3333;
+        --text: #c9d1d9;
+        --text-dim: #6e7681;
+        --border: #30363d;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 14px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'JetBrains Mono', monospace;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* CRT Scanline Effect */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.1) 0px,
+          rgba(0, 0, 0, 0.1) 1px,
+          transparent 1px,
+          transparent 2px
+        );
+        z-index: 9999;
+      }
+
+      /* Subtle CRT glow effect */
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+        z-index: 9998;
+      }
+
+      ::selection {
+        background: var(--green);
+        color: var(--bg);
+      }
+
+      /* Terminal Container */
+      .terminal {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Terminal Header */
+      .terminal-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-bottom: none;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .terminal-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .terminal-button.red { background: #ff5f56; }
+      .terminal-button.yellow { background: #ffbd2e; }
+      .terminal-button.green { background: #27c93f; }
+
+      .terminal-title {
+        flex: 1;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-dim);
+      }
+
+      /* Terminal Body */
+      .terminal-body {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 0 0 8px 8px;
+        padding: 2rem;
+        min-height: 100vh;
+      }
+
+      /* Prompt styling */
+      .prompt {
+        color: var(--green);
+        margin-bottom: 0.5rem;
+      }
+
+      .prompt-user {
+        color: var(--cyan);
+      }
+
+      .prompt-at {
+        color: var(--text-dim);
+      }
+
+      .prompt-host {
+        color: var(--magenta);
+      }
+
+      .prompt-path {
+        color: var(--yellow);
+      }
+
+      .prompt-symbol {
+        color: var(--green);
+      }
+
+      /* Command styling */
+      .command {
+        margin-bottom: 2rem;
+      }
+
+      .command-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .cmd {
+        color: var(--green);
+        font-weight: 600;
+      }
+
+      .flag {
+        color: var(--cyan);
+      }
+
+      .arg {
+        color: var(--yellow);
+      }
+
+      /* Output styling */
+      .output {
+        padding-left: 0;
+        margin-top: 1rem;
+        border-left: 2px solid var(--border);
+        padding-left: 1rem;
+      }
+
+      /* ASCII Art Header */
+      .ascii-header {
+        color: var(--green);
+        font-size: 0.6rem;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        white-space: pre;
+        text-shadow: 0 0 10px var(--green), 0 0 20px var(--green-dim);
+        overflow-x: auto;
+      }
+
+      /* Section Headers */
+      .section-header {
+        color: var(--green);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .section-header::before {
+        content: '#';
+        color: var(--text-dim);
+      }
+
+      /* Comment styling */
+      .comment {
+        color: var(--text-dim);
+        font-style: italic;
+      }
+
+      .comment::before {
+        content: '// ';
+      }
+
+      /* Table styling */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      .data-table th {
+        text-align: left;
+        color: var(--cyan);
+        padding: 0.5rem 1rem 0.5rem 0;
+        border-bottom: 1px solid var(--border);
+        font-weight: 500;
+      }
+
+      .data-table td {
+        padding: 0.5rem 1rem 0.5rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* Skill bars */
+      .skill-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.5rem 0;
+      }
+
+      .skill-name {
+        min-width: 140px;
+        color: var(--text);
+      }
+
+      .skill-name.highlight {
+        color: var(--green);
+        text-shadow: 0 0 5px var(--green);
+      }
+
+      .skill-level {
+        display: flex;
+        gap: 2px;
+      }
+
+      .skill-block {
+        width: 12px;
+        height: 16px;
+        background: var(--border);
+      }
+
+      .skill-block.filled {
+        background: var(--green);
+        box-shadow: 0 0 5px var(--green);
+      }
+
+      .skill-block.filled.expert {
+        background: var(--green);
+      }
+
+      .skill-block.filled.advanced {
+        background: var(--cyan);
+        box-shadow: 0 0 5px var(--cyan);
+      }
+
+      .skill-block.filled.intermediate {
+        background: var(--yellow);
+        box-shadow: 0 0 5px var(--yellow);
+      }
+
+      /* Neovim Section - Special emphasis */
+      .neovim-section {
+        background: var(--bg-secondary);
+        border: 1px solid var(--green);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        position: relative;
+        box-shadow: 0 0 20px rgba(57, 255, 20, 0.1);
+      }
+
+      .neovim-section::before {
+        content: 'FEATURED';
+        position: absolute;
+        top: -10px;
+        left: 1rem;
+        background: var(--green);
+        color: var(--bg);
+        padding: 0.2rem 0.5rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+      }
+
+      .neovim-logo {
+        color: var(--green);
+        font-size: 0.5rem;
+        line-height: 1;
+        white-space: pre;
+        margin-bottom: 1rem;
+      }
+
+      .neovim-title {
+        color: var(--green);
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px var(--green);
+      }
+
+      .neovim-desc {
+        color: var(--text);
+        line-height: 1.8;
+      }
+
+      /* Project Cards */
+      .project-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+        border-color: var(--green);
+        box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
+      }
+
+      .project-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .project-name {
+        color: var(--cyan);
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .project-name::before {
+        content: '> ';
+        color: var(--green);
+      }
+
+      .project-status {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+        border-radius: 2px;
+        background: var(--green-dim);
+        color: var(--green);
+      }
+
+      .project-desc {
+        color: var(--text-dim);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .tech-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .project-link {
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.2s ease;
+      }
+
+      .project-link:hover {
+        color: var(--green);
+      }
+
+      .project-link::before {
+        content: '[';
+        color: var(--text-dim);
+      }
+
+      .project-link::after {
+        content: ']';
+        color: var(--text-dim);
+      }
+
+      /* Contact Section */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .contact-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .contact-label {
+        color: var(--text-dim);
+        font-size: 0.8rem;
+      }
+
+      .contact-value {
+        color: var(--cyan);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .contact-value:hover {
+        color: var(--green);
+        text-shadow: 0 0 5px var(--green);
+      }
+
+      /* Cursor blink */
+      .cursor {
+        display: inline-block;
+        width: 10px;
+        height: 1.2em;
+        background: var(--green);
+        animation: blink 1s step-end infinite;
+        vertical-align: middle;
+        margin-left: 2px;
+      }
+
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+      }
+
+      /* Typing animation */
+      .typing {
+        overflow: hidden;
+        white-space: nowrap;
+        animation: typing 2s steps(40) forwards;
+      }
+
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        text-align: center;
+        color: var(--text-dim);
+        font-size: 0.8rem;
+      }
+
+      .footer-ascii {
+        color: var(--green-dim);
+        font-size: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .terminal {
+          padding: 0.5rem;
+        }
+
+        .terminal-body {
+          padding: 1rem;
+        }
+
+        .ascii-header {
+          font-size: 0.35rem;
+        }
+
+        .skill-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+        }
+
+        .project-header {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="terminal-button red"></div>
+        <div class="terminal-button yellow"></div>
+        <div class="terminal-button green"></div>
+        <div class="terminal-title">rudra@portfolio ~ zsh</div>
+      </div>
+      
+      <div class="terminal-body">
+        <!-- ASCII Art Header -->
+        <pre class="ascii-header" set:html={asciiHeader}></pre>
+
+        <!-- whoami Command -->
+        <div class="command">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cmd">whoami</span>
+            <span class="flag">--verbose</span>
+          </div>
+          <div class="output">
+            <p><span class="comment">Frontend developer based in {personalInfo.location.city}</span></p>
+            <br/>
+            <p><strong style="color: var(--cyan);">NAME:</strong> {personalInfo.name}</p>
+            <p><strong style="color: var(--cyan);">ROLE:</strong> {personalInfo.title}</p>
+            <p><strong style="color: var(--cyan);">STATUS:</strong> {personalInfo.education.year} @ {personalInfo.education.institution}</p>
+            <p><strong style="color: var(--cyan);">LOCATION:</strong> {personalInfo.location.full}</p>
+            <br/>
+            <p style="color: var(--green);">{personalInfo.tagline}</p>
+          </div>
+        </div>
+
+        <!-- cat bio.txt Command -->
+        <div class="command">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cmd">cat</span>
+            <span class="arg">bio.txt</span>
+          </div>
+          <div class="output">
+            <p style="white-space: pre-wrap; max-width: 80ch;">{personalInfo.bio}</p>
+          </div>
+        </div>
+
+        <!-- Neovim Section - FEATURED -->
+        <div class="command">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cmd">nvim</span>
+            <span class="flag">--version</span>
+            <span class="arg">&& cat ~/.config/nvim/README.md</span>
+          </div>
+          
+          <div class="neovim-section">
+            <pre class="neovim-logo" set:html={neovimAscii}></pre>
+            <h3 class="neovim-title">{neovimHighlight.title}</h3>
+            <p class="neovim-desc">{neovimHighlight.description}</p>
+          </div>
+        </div>
+
+        <!-- Skills Command -->
+        <div class="command">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cmd">skills</span>
+            <span class="flag">--list</span>
+            <span class="flag">--with-proficiency</span>
+          </div>
+          <div class="output">
+            <p class="comment">Proficiency: [##########] Expert | [########--] Advanced | [######----] Intermediate</p>
+            <br/>
+            
+            <h4 class="section-header">Primary Stack</h4>
+            {skills.filter(s => s.category === 'primary').map(skill => (
+              <div class="skill-bar">
+                <span class="skill-name">{skill.name}</span>
+                <div class="skill-level">
+                  {[...Array(10)].map((_, i) => (
+                    <span class={`skill-block ${i < (skill.proficiency === 'expert' ? 10 : skill.proficiency === 'advanced' ? 8 : 6) ? `filled ${skill.proficiency}` : ''}`}></span>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <h4 class="section-header" style="margin-top: 1.5rem;">Languages</h4>
+            {skills.filter(s => s.category === 'language').map(skill => (
+              <div class="skill-bar">
+                <span class="skill-name">{skill.name}</span>
+                <div class="skill-level">
+                  {[...Array(10)].map((_, i) => (
+                    <span class={`skill-block ${i < (skill.proficiency === 'expert' ? 10 : skill.proficiency === 'advanced' ? 8 : 6) ? `filled ${skill.proficiency}` : ''}`}></span>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <h4 class="section-header" style="margin-top: 1.5rem;">Tools & Frameworks</h4>
+            {skills.filter(s => s.category === 'tool').map(skill => (
+              <div class="skill-bar">
+                <span class={`skill-name ${skill.name === 'Neovim' ? 'highlight' : ''}`}>{skill.name} {skill.name === 'Neovim' ? '★' : ''}</span>
+                <div class="skill-level">
+                  {[...Array(10)].map((_, i) => (
+                    <span class={`skill-block ${i < (skill.proficiency === 'expert' ? 10 : skill.proficiency === 'advanced' ? 8 : 6) ? `filled ${skill.proficiency}` : ''}`}></span>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <h4 class="section-header" style="margin-top: 1.5rem;">Databases</h4>
+            {skills.filter(s => s.category === 'database').map(skill => (
+              <div class="skill-bar">
+                <span class="skill-name">{skill.name}</span>
+                <div class="skill-level">
+                  {[...Array(10)].map((_, i) => (
+                    <span class={`skill-block ${i < (skill.proficiency === 'expert' ? 10 : skill.proficiency === 'advanced' ? 8 : 6) ? `filled ${skill.proficiency}` : ''}`}></span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Projects Command -->
+        <div class="command">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cmd">ls</span>
+            <span class="flag">-la</span>
+            <span class="arg">~/projects/</span>
+          </div>
+          <div class="output">
+            <p class="comment">total {projects.length} projects</p>
+            <br/>
+            
+            {projects.map((project, index) => (
+              <div class="project-card">
+                <div class="project-header">
+                  <span class="project-name">{project.name}</span>
+                  <span class="project-status">{project.featured ? 'FEATURED' : 'PROJECT'}</span>
+                </div>
+                <p class="project-desc">
+                  {project.description || '// TODO: Add project description'}
+                </p>
+                {project.techStack.length > 0 && (
+                  <div class="project-tech">
+                    {project.techStack.map(tech => (
+                      <span class="tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                )}
+                <div class="project-links">
+                  <a href={project.githubUrl || '#'} class="project-link">GitHub</a>
+                  <a href={project.deployedUrl || '#'} class="project-link">Live</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Contact Command -->
+        <div class="command">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cmd">contact</span>
+            <span class="flag">--all</span>
+          </div>
+          <div class="output">
+            <div class="contact-grid">
+              {personalInfo.socials.map(social => (
+                <div class="contact-item">
+                  <span class="contact-label">{social.platform.toUpperCase()}</span>
+                  <a href={social.url} class="contact-value" target="_blank" rel="noopener noreferrer">
+                    {social.handle}
+                  </a>
+                </div>
+              ))}
+              <div class="contact-item">
+                <span class="contact-label">LOCATION</span>
+                <span class="contact-value">{personalInfo.location.full}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ready prompt -->
+        <div class="command" style="margin-bottom: 0;">
+          <div class="command-line">
+            <span class="prompt">
+              <span class="prompt-user">rudra</span><span class="prompt-at">@</span><span class="prompt-host">dev</span>:<span class="prompt-path">~</span><span class="prompt-symbol">$</span>
+            </span>
+            <span class="cursor"></span>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <pre class="footer-ascii" set:html={footerAscii}></pre>
+          <p>&copy; 2024 {personalInfo.name} | Built with Astro & Neovim</p>
+          <p style="margin-top: 0.5rem;">Connection closed by {personalInfo.location.city}</p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

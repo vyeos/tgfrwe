@@ -1,17 +1,241 @@
 ---
+import { personalInfo, siteMetadata } from '../data/portfolio';
 
+const versions = [
+  {
+    id: 'v1',
+    name: 'Brutalist Editorial',
+    description: 'Stark black/white contrasts, bold serif typography, newspaper-inspired grid layouts',
+    aesthetic: 'Print / Editorial'
+  },
+  {
+    id: 'v2',
+    name: 'Terminal / Hacker',
+    description: 'Green phosphor text, CRT scanlines, command-line interface with special Neovim emphasis',
+    aesthetic: 'Code / Terminal'
+  },
+  {
+    id: 'v3',
+    name: 'Minimalist Japanese',
+    description: 'Zen aesthetic, generous whitespace, subtle animations, muted warm tones',
+    aesthetic: 'Zen / Minimal'
+  },
+  {
+    id: 'v4',
+    name: 'Retro Grainy',
+    description: 'Vintage film grain, warm sepia colors, nostalgic rounded typography',
+    aesthetic: 'Vintage / Film'
+  },
+  {
+    id: 'v5',
+    name: 'Kinetic Typography',
+    description: 'Bold oversized text, dramatic reveals, dynamic motion-inspired design',
+    aesthetic: 'Motion / Bold'
+  }
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Portfolio versions selector" />
+    <title>{personalInfo.name} | Portfolio Versions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #0a0a0a;
+        color: #ffffff;
+        min-height: 100vh;
+        padding: 4rem 2rem;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      header {
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #888;
+        margin-bottom: 1rem;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      h1 span {
+        color: #ff4d4d;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 1rem;
+        max-width: 500px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .versions-grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .version-card {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 2rem;
+        padding: 2rem;
+        background: #111;
+        border: 1px solid #222;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+        align-items: center;
+      }
+
+      .version-card:hover {
+        border-color: #ff4d4d;
+        background: #1a1a1a;
+        transform: translateX(8px);
+      }
+
+      .version-number {
+        font-size: 3rem;
+        font-weight: 200;
+        color: #333;
+        min-width: 80px;
+        transition: color 0.3s ease;
+      }
+
+      .version-card:hover .version-number {
+        color: #ff4d4d;
+      }
+
+      .version-info h2 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .version-info p {
+        font-size: 0.9rem;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .version-aesthetic {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #444;
+        padding: 0.5rem 1rem;
+        border: 1px solid #333;
+      }
+
+      .arrow {
+        font-size: 1.5rem;
+        color: #333;
+        transition: all 0.3s ease;
+      }
+
+      .version-card:hover .arrow {
+        color: #ff4d4d;
+        transform: translateX(5px);
+      }
+
+      footer {
+        margin-top: 4rem;
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #222;
+      }
+
+      .data-note {
+        font-size: 0.85rem;
+        color: #666;
+        line-height: 1.6;
+      }
+
+      .data-note code {
+        background: #1a1a1a;
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+        font-size: 0.8rem;
+        color: #ff4d4d;
+      }
+
+      @media (max-width: 768px) {
+        .version-card {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .version-number {
+          font-size: 2rem;
+        }
+
+        .version-aesthetic {
+          width: fit-content;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="container">
+      <header>
+        <span class="badge">Portfolio Preview</span>
+        <h1>{personalInfo.firstName} <span>{personalInfo.lastName}</span></h1>
+        <p class="subtitle">Choose a design direction. Each version has a unique aesthetic while using the same data.</p>
+      </header>
+
+      <div class="versions-grid">
+        {versions.map((version, index) => (
+          <a href={`/${version.id}`} class="version-card">
+            <span class="version-number">0{index + 1}</span>
+            <div class="version-info">
+              <h2>{version.name}</h2>
+              <p>{version.description}</p>
+            </div>
+            <span class="version-aesthetic">{version.aesthetic}</span>
+            <span class="arrow">→</span>
+          </a>
+        ))}
+      </div>
+
+      <footer>
+        <p class="data-note">
+          All portfolio data is stored in <code>src/data/portfolio.ts</code><br/>
+          Update your projects, skills, and personal info there.
+        </p>
+      </footer>
+    </div>
+  </body>
 </html>

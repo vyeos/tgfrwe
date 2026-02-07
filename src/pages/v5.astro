@@ -1,0 +1,909 @@
+---
+// Version 5: Kinetic Typography / Dynamic Motion Design
+// Inspired by: Motion graphics, contemporary design agencies, Swiss style
+// Aesthetic: Bold oversized text, horizontal scrolling elements, dramatic reveals
+import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '../data/portfolio';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={siteMetadata.description} />
+    <title>{siteMetadata.title} | v5</title>
+    
+    <!-- Bold modern fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --white: #ffffff;
+        --gray: #888888;
+        --gray-dark: #333333;
+        --accent: #ff4d4d;
+        --accent-secondary: #4dffff;
+        --yellow: #ffff4d;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg);
+        color: var(--white);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      /* Smooth scroll reveal animations */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .animate-up {
+        animation: slideUp 0.8s ease-out forwards;
+      }
+
+      .animate-in {
+        animation: slideIn 0.6s ease-out forwards;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1.5rem 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        mix-blend-mode: difference;
+      }
+
+      .nav-logo {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        color: var(--white);
+        letter-spacing: 0.05em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Hero Section - Kinetic Typography */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-line {
+        overflow: hidden;
+        margin: 0.5rem 0;
+      }
+
+      .hero-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(4rem, 15vw, 12rem);
+        line-height: 0.9;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        animation: slideUp 0.8s ease-out forwards;
+      }
+
+      .hero-text.outline {
+        -webkit-text-stroke: 2px var(--white);
+        color: transparent;
+      }
+
+      .hero-text.accent {
+        color: var(--accent);
+      }
+
+      .hero-text.delay-1 { animation-delay: 0.1s; opacity: 0; }
+      .hero-text.delay-2 { animation-delay: 0.2s; opacity: 0; }
+      .hero-text.delay-3 { animation-delay: 0.3s; opacity: 0; }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        color: var(--gray);
+        margin-top: 3rem;
+        max-width: 400px;
+        line-height: 1.8;
+        animation: fadeIn 1s ease-out 0.5s forwards;
+        opacity: 0;
+      }
+
+      .hero-scroll-indicator {
+        position: absolute;
+        bottom: 3rem;
+        left: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.75rem;
+        color: var(--gray);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .scroll-line {
+        width: 60px;
+        height: 1px;
+        background: var(--gray-dark);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .scroll-line::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 30px;
+        background: var(--accent);
+        animation: scrollMove 2s ease-in-out infinite;
+      }
+
+      @keyframes scrollMove {
+        0% { transform: translateX(-30px); }
+        50% { transform: translateX(60px); }
+        100% { transform: translateX(-30px); }
+      }
+
+      /* Marquee Section */
+      .marquee-section {
+        padding: 4rem 0;
+        background: var(--white);
+        overflow: hidden;
+      }
+
+      .marquee {
+        display: flex;
+        animation: marquee 20s linear infinite;
+      }
+
+      .marquee-content {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        padding-right: 4rem;
+        flex-shrink: 0;
+      }
+
+      .marquee-item {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3rem;
+        color: var(--bg);
+        white-space: nowrap;
+      }
+
+      .marquee-dot {
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+      }
+
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* About Section */
+      .about {
+        padding: 10rem 3rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+      }
+
+      .about-label {
+        font-size: 0.75rem;
+        color: var(--gray);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+
+      .about-headline {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+        line-height: 1;
+        margin-bottom: 2rem;
+      }
+
+      .about-headline span {
+        color: var(--accent);
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        color: var(--gray);
+        line-height: 1.9;
+      }
+
+      .about-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+
+      .stat-item {
+        border-left: 2px solid var(--gray-dark);
+        padding-left: 1.5rem;
+      }
+
+      .stat-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+        line-height: 1;
+        color: var(--white);
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--gray);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 0.5rem;
+      }
+
+      /* Neovim Section - Full Width Statement */
+      .neovim-section {
+        padding: 8rem 3rem;
+        background: linear-gradient(135deg, #1a1a1a 0%, var(--bg) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .neovim-bg-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 30vw;
+        color: var(--gray-dark);
+        opacity: 0.1;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+
+      .neovim-content {
+        position: relative;
+        z-index: 1;
+        max-width: 800px;
+      }
+
+      .neovim-badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--bg);
+        background: var(--accent-secondary);
+        padding: 0.4rem 1rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+
+      .neovim-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 5rem;
+        line-height: 1;
+        margin-bottom: 2rem;
+      }
+
+      .neovim-title span {
+        color: var(--accent-secondary);
+      }
+
+      .neovim-desc {
+        font-size: 1.1rem;
+        color: var(--gray);
+        line-height: 1.9;
+        max-width: 600px;
+      }
+
+      /* Skills Section */
+      .skills-section {
+        padding: 8rem 3rem;
+      }
+
+      .skills-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 4rem;
+        border-bottom: 1px solid var(--gray-dark);
+        padding-bottom: 2rem;
+      }
+
+      .skills-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+      }
+
+      .skills-count {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 6rem;
+        color: var(--gray-dark);
+        line-height: 1;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border: 1px solid var(--gray-dark);
+      }
+
+      .skill-category {
+        padding: 2rem;
+        border-right: 1px solid var(--gray-dark);
+        border-bottom: 1px solid var(--gray-dark);
+      }
+
+      .skill-category:nth-child(4n) {
+        border-right: none;
+      }
+
+      .skill-category:nth-last-child(-n+4) {
+        border-bottom: none;
+      }
+
+      .skill-category-title {
+        font-size: 0.7rem;
+        color: var(--accent);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+      }
+
+      .skill-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .skill-name:hover {
+        color: var(--accent);
+      }
+
+      .skill-name.highlight {
+        color: var(--accent-secondary);
+      }
+
+      /* Projects Section */
+      .projects-section {
+        padding: 8rem 0;
+      }
+
+      .projects-header {
+        padding: 0 3rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .projects-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 6rem;
+        line-height: 0.9;
+      }
+
+      .projects-title span {
+        display: block;
+        -webkit-text-stroke: 2px var(--white);
+        color: transparent;
+      }
+
+      .project-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--gray-dark);
+        transition: background 0.4s ease;
+      }
+
+      .project-item:hover {
+        background: #1a1a1a;
+      }
+
+      .project-item:last-child {
+        border-bottom: 1px solid var(--gray-dark);
+      }
+
+      .project-info {
+        padding: 4rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .project-number {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1rem;
+        color: var(--gray);
+        margin-bottom: 1rem;
+      }
+
+      .project-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+        line-height: 1;
+        margin-bottom: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .project-item:hover .project-name {
+        color: var(--accent);
+      }
+
+      .project-desc {
+        font-size: 0.95rem;
+        color: var(--gray);
+        max-width: 400px;
+        line-height: 1.8;
+      }
+
+      .project-visual {
+        background: linear-gradient(135deg, #222 0%, #111 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-visual-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 8rem;
+        color: rgba(255,255,255,0.03);
+        position: absolute;
+        white-space: nowrap;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .project-link {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--white);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .project-link:hover {
+        color: var(--accent);
+      }
+
+      .project-link svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 10rem 3rem;
+        text-align: center;
+      }
+
+      .contact-headline {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(3rem, 10vw, 8rem);
+        line-height: 1;
+        margin-bottom: 3rem;
+      }
+
+      .contact-headline span {
+        color: var(--accent);
+      }
+
+      .contact-email {
+        display: inline-block;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2rem;
+        color: var(--white);
+        text-decoration: none;
+        padding: 1rem 0;
+        border-bottom: 3px solid var(--accent);
+        transition: all 0.3s ease;
+      }
+
+      .contact-email:hover {
+        color: var(--accent);
+        letter-spacing: 0.05em;
+      }
+
+      .contact-socials {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 5rem;
+      }
+
+      .social-link {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: color 0.3s ease;
+      }
+
+      .social-link:hover {
+        color: var(--white);
+      }
+
+      /* Footer */
+      footer {
+        padding: 3rem;
+        border-top: 1px solid var(--gray-dark);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--gray);
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        nav {
+          padding: 1.5rem 2rem;
+        }
+
+        .hero, .about, .skills-section, .contact-section {
+          padding-left: 2rem;
+          padding-right: 2rem;
+        }
+
+        .about {
+          grid-template-columns: 1fr;
+          gap: 4rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .skill-category:nth-child(2n) {
+          border-right: none;
+        }
+
+        .project-item {
+          grid-template-columns: 1fr;
+        }
+
+        .project-visual {
+          min-height: 200px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-text {
+          font-size: 3rem;
+        }
+
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .skill-category {
+          border-right: none;
+        }
+
+        .about-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-socials {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        footer {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <span class="nav-logo">RUDRA PATEL</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-line">
+        <h1 class="hero-text delay-1">FRONTEND</h1>
+      </div>
+      <div class="hero-line">
+        <h1 class="hero-text outline delay-2">DEVELOPER</h1>
+      </div>
+      <div class="hero-line">
+        <h1 class="hero-text accent delay-3">&amp; BUILDER</h1>
+      </div>
+      
+      <p class="hero-subtitle">{personalInfo.tagline}</p>
+      
+      <div class="hero-scroll-indicator">
+        <div class="scroll-line"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+      <div class="marquee">
+        <div class="marquee-content">
+          <span class="marquee-item">NEXT.JS</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">TYPESCRIPT</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">REACT</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">TAILWIND</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">NEOVIM</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">POSTGRESQL</span>
+          <span class="marquee-dot"></span>
+        </div>
+        <div class="marquee-content">
+          <span class="marquee-item">NEXT.JS</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">TYPESCRIPT</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">REACT</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">TAILWIND</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">NEOVIM</span>
+          <span class="marquee-dot"></span>
+          <span class="marquee-item">POSTGRESQL</span>
+          <span class="marquee-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div>
+        <span class="about-label">About Me</span>
+        <h2 class="about-headline">CRAFTING <span>DIGITAL</span> EXPERIENCES</h2>
+        <p class="about-text">{personalInfo.bio}</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-number">{projects.length}+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2ND</div>
+          <div class="stat-label">Year Student</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">{skills.filter(s => s.proficiency === 'expert').length}</div>
+          <div class="stat-label">Expert Skills</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">In Neovim</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Neovim Section -->
+    <section class="neovim-section">
+      <div class="neovim-bg-text">NEOVIM</div>
+      <div class="neovim-content">
+        <span class="neovim-badge">Primary Tool</span>
+        <h2 class="neovim-title">MY EDITOR IS <span>NEOVIM</span></h2>
+        <p class="neovim-desc">{neovimHighlight.description}</p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+      <div class="skills-header">
+        <h2 class="skills-title">SKILLS &<br/>EXPERTISE</h2>
+        <span class="skills-count">{skills.length}</span>
+      </div>
+      
+      <div class="skills-grid">
+        {skills.filter(s => s.category === 'primary').map(skill => (
+          <div class="skill-category">
+            <span class="skill-category-title">Primary</span>
+            <div class="skill-name">{skill.name}</div>
+          </div>
+        ))}
+        {skills.filter(s => s.category === 'tool').map(skill => (
+          <div class="skill-category">
+            <span class="skill-category-title">Tool</span>
+            <div class={`skill-name ${skill.name === 'Neovim' ? 'highlight' : ''}`}>{skill.name}</div>
+          </div>
+        ))}
+        {skills.filter(s => s.category === 'language').map(skill => (
+          <div class="skill-category">
+            <span class="skill-category-title">Language</span>
+            <div class="skill-name">{skill.name}</div>
+          </div>
+        ))}
+        {skills.filter(s => s.category === 'database').map(skill => (
+          <div class="skill-category">
+            <span class="skill-category-title">Database</span>
+            <div class="skill-name">{skill.name}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="work">
+      <div class="projects-header">
+        <h2 class="projects-title">
+          SELECTED
+          <span>WORKS</span>
+        </h2>
+      </div>
+
+      {projects.map((project, index) => (
+        <article class="project-item">
+          <div class="project-info">
+            <span class="project-number">0{index + 1}</span>
+            <h3 class="project-name">{project.name.toUpperCase()}</h3>
+            <p class="project-desc">
+              {project.description || 'A showcase project demonstrating technical skills and creative problem-solving. Details coming soon.'}
+            </p>
+            <div class="project-links">
+              <a href={project.githubUrl || '#'} class="project-link">
+                GitHub
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <a href={project.deployedUrl || '#'} class="project-link">
+                Live Site
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="project-visual">
+            <span class="project-visual-text">{project.name.toUpperCase()}</span>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+      <h2 class="contact-headline">
+        LET'S BUILD<br/>
+        SOMETHING <span>GREAT</span>
+      </h2>
+      <a href={`mailto:${personalInfo.email}`} class="contact-email">
+        {personalInfo.email.toUpperCase()}
+      </a>
+      <div class="contact-socials">
+        {personalInfo.socials.map(social => (
+          <a href={social.url} class="social-link" target="_blank" rel="noopener noreferrer">
+            {social.platform}
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <span>&copy; 2024 {personalInfo.name}</span>
+      <span>{personalInfo.location.full}</span>
+      <span>Made with Neovim</span>
+    </footer>
+  </body>
+</html>
