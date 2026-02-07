@@ -414,6 +414,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
       .project-media {
         aspect-ratio: 16/9;
+        height: clamp(240px, 32vw, 360px);
         background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
         display: flex;
         align-items: center;
@@ -667,10 +668,10 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
     <!-- Masthead -->
     <header class="masthead">
       <div class="masthead-logo">VYEOS</div>
-      <div class="masthead-date">Est. 2024 / Ahmedabad</div>
+      <div class="masthead-date">THE RANDOM GUY</div>
       <nav class="masthead-nav">
-        <a href="#work">Work</a>
         <a href="#about">About</a>
+        <a href="#work">Work</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -854,7 +855,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
     <div class="footer-bottom">
       <span>&copy; 2024 {personalInfo.name}</span>
-      <span>{personalInfo.education.institution} / {personalInfo.education.year}</span>
+      <span>Open to collaboration</span>
     </div>
   </body>
 </html>
