@@ -20,11 +20,11 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
     
     <style>
       :root {
-        --black: #0a0a0a;
-        --white: #f5f5f0;
-        --accent: #ff3d00;
-        --gray: #6b6b6b;
-        --border: 2px solid var(--black);
+        --black: #e0def4;
+        --white: #191724;
+        --accent: #eb6f92;
+        --gray: #908caa;
+        --border: 2px solid #403d52;
       }
 
       * {
@@ -76,6 +76,11 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        color: var(--gray);
+      }
+
+      .masthead-date .accent {
+        color: var(--accent);
       }
 
       .masthead-nav {
@@ -200,8 +205,8 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: var(--black);
-        color: var(--white);
+        background: #1f1d2e;
+        color: var(--black);
       }
 
       .hero-stats {
@@ -210,7 +215,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
       }
 
       .stat-item {
-        border-bottom: 1px solid rgba(255,255,255,0.2);
+        border-bottom: 1px solid rgba(224,222,244,0.2);
         padding-bottom: 2rem;
       }
 
@@ -239,7 +244,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         text-transform: uppercase;
         letter-spacing: 0.1em;
         padding: 0.5rem 1rem;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(224,222,244,0.3);
         margin-top: 3rem;
       }
 
@@ -305,8 +310,8 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
       .skill-category {
         padding: 2rem;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        border-right: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(224,222,244,0.1);
+        border-right: 1px solid rgba(224,222,244,0.1);
       }
 
       .skill-category:nth-child(2n) {
@@ -372,7 +377,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
       }
 
       .neovim-visual {
-        background: var(--black);
+        background: #1f1d2e;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -432,13 +437,13 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
       }
 
       .project-card:hover {
-        background: rgba(0,0,0,0.02);
+        background: rgba(224,222,244,0.04);
       }
 
       .project-media {
         aspect-ratio: 16/9;
         height: clamp(240px, 32vw, 360px);
-        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        background: linear-gradient(135deg, #1f1d2e 0%, #26233a 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -457,7 +462,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         font-family: 'Playfair Display', serif;
         font-size: 3rem;
         font-weight: 900;
-        color: rgba(255,255,255,0.1);
+        color: rgba(224,222,244,0.12);
         text-transform: uppercase;
       }
 
@@ -505,7 +510,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
       .project-tech span {
         padding: 0.25rem 0.5rem;
         background: transparent;
-        border: 1px solid rgba(0,0,0,0.2);
+        border: 1px solid rgba(224,222,244,0.2);
         color: var(--gray);
         font-size: 0.55rem;
         text-transform: uppercase;
@@ -594,8 +599,8 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
       .footer-contact {
         padding: 4rem 2rem;
-        background: var(--black);
-        color: var(--white);
+        background: #1f1d2e;
+        color: var(--black);
       }
 
       .footer-contact-title {
@@ -608,7 +613,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
       .footer-email {
         font-size: 0.85rem;
-        color: var(--white);
+        color: var(--black);
         text-decoration: none;
         word-break: break-all;
       }
@@ -750,7 +755,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         <a href="#work">Work</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="masthead-date">Current favourite theme — Rose Pine</div>
+      <div class="masthead-date">Current favourite theme — <span class="accent">Rose Pine</span></div>
     </header>
 
     <!-- Hero -->
