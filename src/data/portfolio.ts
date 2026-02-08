@@ -138,7 +138,7 @@ export const neovimHighlight = {
   title: "Neovim Enthusiast",
   description:
     "My editor of choice. I've configured it to be a powerful, lightning-fast development environment that rivals any modern IDE. Keyboard-driven workflow, custom LSP configurations, and a setup that makes coding feel like playing an instrument.",
-  configRepo: "https://github.com/vyeos/dotmac", // Add your dotfiles/neovim config repo if available
+  configRepo: "https://github.com/vyeos/dotmac",
 };
 
 // =====================
@@ -165,8 +165,8 @@ export const projects: Project[] = [
       "Langchain",
       "Cloudflare",
     ],
-    githubUrl: "https://github.com/vyeos/zendrapdf", // Add GitHub URL
-    deployedUrl: "https://zendrapdf.app", // Add deployed URL
+    githubUrl: "https://github.com/vyeos/zendrapdf",
+    deployedUrl: "https://zendrapdf.app",
     media: {
       type: "video",
       url: "/zendra.mp4",
@@ -177,8 +177,8 @@ export const projects: Project[] = [
     id: "aspdc-website",
     name: "ASPDC Website",
     description:
-      "Designed and developed a modern, visually appealing website for our university’s programming club — ASPDC. Focused on performance, clean transitions, and a content-driven experience powered by Zenblog.", // Add project description
-    duration: "Aug 2025 - Sept 2025", // e.g., "Feb 2024 - Apr 2024"
+      "Designed and developed a modern, visually appealing website for our university’s programming club — ASPDC. Focused on performance, clean transitions, and a content-driven experience powered by Zenblog.",
+    duration: "Aug 2025 - Sept 2025",
     techStack: [
       "Next.js",
       "TS",
@@ -187,9 +187,9 @@ export const projects: Project[] = [
       "TailwindCSS",
       "Shadcn",
       "Zenblog",
-    ], // Add tech stack
-    githubUrl: "https://github.com/aspdc/aspdc-revamped", // Add GitHub URL
-    deployedUrl: "https://aspdc.vercel.app", // Add deployed URL
+    ],
+    githubUrl: "https://github.com/aspdc/aspdc-revamped",
+    deployedUrl: "https://aspdc.vercel.app",
     media: {
       type: "video",
       url: "/aspdc.mp4",
@@ -199,14 +199,14 @@ export const projects: Project[] = [
   {
     id: "vshl",
     name: "Vshl",
-    description: "", // Add project description
-    duration: "Jan 2026", // Add duration
-    techStack: ["C", "A lot of brain cells"], // Add tech stack
-    githubUrl: "https://github.com/vyeos/vshl", // Add GitHub URL
-    deployedUrl: "", // Add deployed URL
+    description: "",
+    duration: "Jan 2026",
+    techStack: ["C", "A lot of brain cells"],
+    githubUrl: "https://github.com/vyeos/vshl",
+    deployedUrl: "",
     media: {
       type: "video",
-      url: "", // Add image/video URL
+      url: "",
       alt: "Vshl Preview",
     },
   },
@@ -214,14 +214,14 @@ export const projects: Project[] = [
     id: "snake-game",
     name: "Snake Game",
     description:
-      "My first attempt on creating a game. Started with the basics and added my touches onto it. (Try the game with sound)", // Add project description
-    duration: "Feb 2025", // Add duration
-    techStack: ["Lua", "Love2D"], // e.g., ["JavaScript", "HTML Canvas", "CSS"]
-    githubUrl: "https://github.com/vyeos/love-snake", // Add GitHub URL
-    deployedUrl: "", // Add deployed URL
+      "My first attempt on creating a game. Started with the basics and added my touches onto it. (Try the game with sound)",
+    duration: "Feb 2025",
+    techStack: ["Lua", "Love2D"],
+    githubUrl: "https://github.com/vyeos/love-snake",
+    deployedUrl: "",
     media: {
       type: "video",
-      url: "/snake.mp4", // Add image/video URL
+      url: "/snake.mp4",
       alt: "Snake Game Preview",
     },
   },
@@ -234,15 +234,15 @@ export const siteMetadata = {
   title: "Rudra Patel | Frontend Developer",
   description:
     "Frontend developer crafting performant, pixel-perfect web experiences. Specializing in Next.js, TypeScript, and modern web technologies.",
-  url: "vyeos.me", // Add your domain when available
+  url: "vyeos.me",
   ogImage: "/me.jpg",
 };
 
 // Fun facts or personal touches
 export const personalTouches = {
-  currentlyLearning: [], // e.g., ["Rust", "WebGL", "System Design"]
-  interests: [], // e.g., ["Open Source", "UI/UX Design", "Performance Optimization"]
-  funFact: "", // Add a fun fact about yourself
+  currentlyLearning: [],
+  interests: [],
+  funFact: "",
 };
 
 // Export everything as a single object for convenience
