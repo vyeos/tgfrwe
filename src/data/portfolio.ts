@@ -199,14 +199,15 @@ export const projects: Project[] = [
   {
     id: "vshl",
     name: "Vshl",
-    description: "",
+    description:
+      "Started to see Magicalbat's YT channel and got inspired to write C. A shell was the first thing that struck my mind as my first C project",
     duration: "Jan 2026",
     techStack: ["C", "A lot of brain cells"],
     githubUrl: "https://github.com/vyeos/vshl",
     deployedUrl: "",
     media: {
       type: "video",
-      url: "",
+      url: "/vshl.mp4",
       alt: "Vshl Preview",
     },
   },
