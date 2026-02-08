@@ -674,7 +674,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
   <body>
     <!-- Masthead -->
     <header class="masthead">
-      <div class="masthead-logo">THE RANDOM GUY</div>
+      <div class="masthead-logo">RANDOM GUY</div>
       <!-- <div class="masthead-date">THE RANDOM GUY</div> -->
       <nav class="masthead-nav">
         <a href="#about">About</a>
@@ -853,13 +853,13 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
     <footer class="footer">
       <div class="footer-main">
         <h2 class="footer-headline">
-          Let's build something <em>exceptional</em> together
+          Keep those <em>damn hands</em> on your keyboard
         </h2>
       </div>
       <div class="footer-links">
         <div class="footer-links-title">Connect</div>
         <ul>
-          {personalInfo.socials.map(social => (
+          {personalInfo.socials.filter(social => social.platform !== "Email").map(social => (
             <li>
               <a href={social.url} target="_blank" rel="noopener noreferrer">
                 {social.platform}
@@ -880,7 +880,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
     <div class="footer-bottom">
       <span>&copy; 2024 {personalInfo.name}</span>
-      <span>Open to collaboration</span>
+      <span>Open for collaboration</span>
     </div>
   </body>
 </html>

@@ -1,6 +1,3 @@
-// Portfolio Data - Rudra Patel
-// All personal and project information stored here for easy updates
-
 export interface Project {
   id: string;
   name: string;
@@ -10,17 +7,15 @@ export interface Project {
   githubUrl: string;
   deployedUrl: string;
   media: {
-    type: 'image' | 'video';
+    type: "image" | "video";
     url: string;
     alt: string;
   };
-  featured: boolean;
 }
 
 export interface Skill {
   name: string;
-  category: 'primary' | 'language' | 'tool' | 'database';
-  proficiency: 'expert' | 'advanced' | 'intermediate';
+  category: "primary" | "language" | "tool" | "database";
   icon?: string;
 }
 
@@ -62,41 +57,40 @@ export const personalInfo: PersonalInfo = {
   firstName: "Rudra",
   lastName: "Patel",
   title: "Frontend Developer",
-  tagline: "Crafting performant, pixel-perfect interfaces with obsessive attention to detail",
-  bio: `I'm a frontend developer with a knack for building web experiences that don't just work—they feel right. Currently in my 2nd year at Adani University, I spend my days (and many nights) in Neovim, architecting interfaces with Next.js, TypeScript, and Tailwind CSS.
-
-I believe great software is invisible—users shouldn't notice the code, only the seamless experience. When I'm not pushing pixels or optimizing bundle sizes, I'm diving into backend challenges because good frontends need solid foundations.`,
+  tagline:
+    "Crafting performant, pixel-perfect interfaces with obsessive attention to detail",
+  bio: `I'm a frontend developer with a knack for building web experiences that don't just work—they feel right. I spend my days (and many nights) architecting interfaces with Next.js, TypeScript, and Tailwind CSS or doing systems programming when I feel like doing it.`,
   location: {
     city: "Ahmedabad",
     state: "Gujarat",
     country: "India",
-    full: "Ahmedabad, Gujarat, India"
+    full: "Ahmedabad, Gujarat, India",
   },
   email: "rudranpatel0980@gmail.com",
   education: {
     institution: "Adani University",
-    degree: "Bachelor's in Computer Science", // Update with actual degree
+    degree: "Bachelor's in Computer Science",
     year: "2nd Year",
-    status: "Currently Pursuing"
+    status: "Currently Pursuing",
   },
   socials: [
     {
       platform: "GitHub",
       url: "https://github.com/vyeos",
-      handle: "@vyeos"
+      handle: "@vyeos",
     },
     {
       platform: "X",
       url: "https://x.com/vye_os",
-      handle: "@vye_os"
+      handle: "@vye_os",
     },
     {
       platform: "Email",
       url: "mailto:rudranpatel0980@gmail.com",
-      handle: "rudranpatel0980@gmail.com"
-    }
+      handle: "rudranpatel0980@gmail.com",
+    },
   ],
-  resume: "" // Add resume URL when available
+  resume: "/resume.pdf",
 };
 
 // =====================
@@ -104,33 +98,47 @@ I believe great software is invisible—users shouldn't notice the code, only th
 // =====================
 export const skills: Skill[] = [
   // Primary Stack
-  { name: "Next.js", category: "primary", proficiency: "expert" },
-  { name: "TypeScript", category: "primary", proficiency: "expert" },
-  { name: "Tailwind CSS", category: "primary", proficiency: "expert" },
-  { name: "React", category: "primary", proficiency: "expert" },
-  
+  { name: "Next.js", category: "primary" },
+  { name: "TypeScript", category: "primary" },
+  { name: "Tailwind CSS", category: "primary" },
+  { name: "Shadcn", category: "primary" },
+  { name: "Better Auth", category: "primary" },
+  { name: "PostgreSQL", category: "primary" },
+  { name: "Drizzle ORM", category: "primary" },
+  { name: "Framer Motion", category: "primary" },
+
   // Languages
-  { name: "JavaScript", category: "language", proficiency: "expert" },
-  { name: "Python", category: "language", proficiency: "advanced" },
-  { name: "C", category: "language", proficiency: "intermediate" },
-  
+  { name: "TypeScript", category: "language" },
+  { name: "JavaScript", category: "language" },
+  { name: "C", category: "language" },
+  { name: "Lua", category: "language" },
+  { name: "Golang", category: "language" },
+  { name: "Python", category: "language" },
+
   // Tools & Frameworks
-  { name: "Neovim", category: "tool", proficiency: "expert" },
-  { name: "TanStack Query", category: "tool", proficiency: "advanced" },
-  { name: "TanStack Router", category: "tool", proficiency: "advanced" },
-  { name: "Node.js", category: "tool", proficiency: "advanced" },
-  { name: "Git", category: "tool", proficiency: "advanced" },
-  
+  { name: "Neovim", category: "tool" },
+  { name: "Opencode", category: "tool" },
+  { name: "TanStack Start", category: "tool" },
+  { name: "Git", category: "tool" },
+  { name: "GitHub", category: "tool" },
+  { name: "curl", category: "tool" },
+  { name: "Postman", category: "tool" },
+  { name: "Docker", category: "tool" },
+
   // Databases
-  { name: "PostgreSQL", category: "database", proficiency: "advanced" },
-  { name: "NoSQL", category: "database", proficiency: "intermediate" },
+  { name: "PostgreSQL", category: "database" },
+  { name: "SQL", category: "database" },
+  { name: "NoSQL", category: "database" },
+  { name: "Drizzle ORM", category: "database" },
+  { name: "Prisma ORM", category: "database" },
 ];
 
 // Special emphasis on Neovim
 export const neovimHighlight = {
   title: "Neovim Enthusiast",
-  description: "My editor of choice. I've configured it to be a powerful, lightning-fast development environment that rivals any modern IDE. Keyboard-driven workflow, custom LSP configurations, and a setup that makes coding feel like playing an instrument.",
-  configRepo: "", // Add your dotfiles/neovim config repo if available
+  description:
+    "My editor of choice. I've configured it to be a powerful, lightning-fast development environment that rivals any modern IDE. Keyboard-driven workflow, custom LSP configurations, and a setup that makes coding feel like playing an instrument.",
+  configRepo: "https://github.com/vyeos/dotmac", // Add your dotfiles/neovim config repo if available
 };
 
 // =====================
@@ -140,63 +148,83 @@ export const projects: Project[] = [
   {
     id: "zendra-pdf",
     name: "Zendra PDF",
-    description: "", // Add project description
-    duration: "", // e.g., "Jan 2024 - Present" or "3 months"
-    techStack: [], // e.g., ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"]
-    githubUrl: "", // Add GitHub URL
-    deployedUrl: "", // Add deployed URL
+    description:
+      "Built a full-stack platform that transforms tedious PDF-generation into a one-click automated process. Integrates authentication, storage, and AI-powered document generation to provide a seamless user experience.",
+    duration: "Sept 2025 - Nov 2025",
+    techStack: [
+      "Next.js",
+      "TS",
+      "Better Auth",
+      "Supabase (PostgreSQL)",
+      "Drizzle",
+      "TailwindCSS",
+      "Shadcn",
+      "Python",
+      "FastAPI",
+      "Pincone",
+      "Langchain",
+      "Cloudflare",
+    ],
+    githubUrl: "https://github.com/vyeos/zendrapdf", // Add GitHub URL
+    deployedUrl: "https://zendrapdf.app", // Add deployed URL
     media: {
       type: "video",
       url: "/zendra.mp4",
-      alt: "Zendra PDF Preview"
+      alt: "Zendra PDF Preview",
     },
-    featured: true
   },
   {
     id: "aspdc-website",
     name: "ASPDC Website",
-    description: "", // Add project description
-    duration: "", // e.g., "Feb 2024 - Apr 2024"
-    techStack: [], // Add tech stack
-    githubUrl: "", // Add GitHub URL
-    deployedUrl: "", // Add deployed URL
+    description:
+      "Designed and developed a modern, visually appealing website for our university’s programming club — ASPDC. Focused on performance, clean transitions, and a content-driven experience powered by Zenblog.", // Add project description
+    duration: "Aug 2025 - Sept 2025", // e.g., "Feb 2024 - Apr 2024"
+    techStack: [
+      "Next.js",
+      "TS",
+      "NeonDB",
+      "Drizzle",
+      "TailwindCSS",
+      "Shadcn",
+      "Zenblog",
+    ], // Add tech stack
+    githubUrl: "https://github.com/aspdc/aspdc-revamped", // Add GitHub URL
+    deployedUrl: "https://aspdc.vercel.app", // Add deployed URL
     media: {
       type: "video",
       url: "/aspdc.mp4",
-      alt: "ASPDC Website Preview"
+      alt: "ASPDC Website Preview",
     },
-    featured: true
   },
   {
     id: "vshl",
     name: "Vshl",
     description: "", // Add project description
-    duration: "", // Add duration
-    techStack: [], // Add tech stack
-    githubUrl: "", // Add GitHub URL
+    duration: "Jan 2026", // Add duration
+    techStack: ["C", "A lot of brain cells"], // Add tech stack
+    githubUrl: "https://github.com/vyeos/vshl", // Add GitHub URL
     deployedUrl: "", // Add deployed URL
     media: {
-      type: "image",
+      type: "video",
       url: "", // Add image/video URL
-      alt: "Vshl Preview"
+      alt: "Vshl Preview",
     },
-    featured: true
   },
   {
     id: "snake-game",
     name: "Snake Game",
-    description: "", // Add project description
-    duration: "", // Add duration
-    techStack: [], // e.g., ["JavaScript", "HTML Canvas", "CSS"]
-    githubUrl: "", // Add GitHub URL
+    description:
+      "My first attempt on creating a game. Started with the basics and added my touches onto it. (Try the game with sound)", // Add project description
+    duration: "Feb 2025", // Add duration
+    techStack: ["Lua", "Love2D"], // e.g., ["JavaScript", "HTML Canvas", "CSS"]
+    githubUrl: "https://github.com/vyeos/love-snake", // Add GitHub URL
     deployedUrl: "", // Add deployed URL
     media: {
-      type: "image",
-      url: "", // Add image/video URL
-      alt: "Snake Game Preview"
+      type: "video",
+      url: "/snake.mp4", // Add image/video URL
+      alt: "Snake Game Preview",
     },
-    featured: false
-  }
+  },
 ];
 
 // =====================
@@ -204,8 +232,9 @@ export const projects: Project[] = [
 // =====================
 export const siteMetadata = {
   title: "Rudra Patel | Frontend Developer",
-  description: "Frontend developer crafting performant, pixel-perfect web experiences. Specializing in Next.js, TypeScript, and modern web technologies.",
-  url: "", // Add your domain when available
+  description:
+    "Frontend developer crafting performant, pixel-perfect web experiences. Specializing in Next.js, TypeScript, and modern web technologies.",
+  url: "vyeos.me", // Add your domain when available
   ogImage: "/me.jpg",
 };
 
