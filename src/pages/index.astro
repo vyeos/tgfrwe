@@ -465,12 +465,29 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         color: var(--gray);
         line-height: 1.6;
         flex: 1;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
       }
 
       .project-desc.placeholder {
         font-style: italic;
         opacity: 0.5;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin-bottom: 1rem;
+      }
+
+      .project-tech span {
+        padding: 0.25rem 0.5rem;
+        background: transparent;
+        border: 1px solid rgba(0,0,0,0.2);
+        color: var(--gray);
+        font-size: 0.55rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
       }
 
       .project-meta {
@@ -823,6 +840,13 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
             <p class={`project-desc ${!project.description ? 'placeholder' : ''}`}>
               {project.description || 'Project description coming soon. This space will showcase the problem solved, approach taken, and impact delivered.'}
             </p>
+            {project.techStack?.length ? (
+              <div class="project-tech">
+                {project.techStack.map((tech) => (
+                  <span>{tech}</span>
+                ))}
+              </div>
+            ) : null}
             <div class="project-meta">
               {project.githubUrl && (
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
