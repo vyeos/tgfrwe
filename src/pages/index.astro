@@ -8,7 +8,7 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={siteMetadata.description} />
     <title>{siteMetadata.title}</title>
@@ -70,6 +70,13 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         font-weight: 900;
         letter-spacing: -0.02em;
         text-transform: uppercase;
+      }
+
+      .logo-mark {
+        display: block;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
       }
 
       .masthead-date {
@@ -776,6 +783,11 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
           font-size: 1.1rem;
         }
 
+        .logo-mark {
+          width: 30px;
+          height: 30px;
+        }
+
         .masthead-date {
           font-size: 0.65rem;
           letter-spacing: 0.08em;
@@ -832,7 +844,9 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
   <body>
     <!-- Masthead -->
     <header class="masthead">
-      <div class="masthead-logo">VYEOS</div>
+      <div class="masthead-logo">
+        <img src="/vyeos.png" alt="VYEOS" class="logo-mark" />
+      </div>
       <nav class="masthead-nav">
         <a href="#about">About</a>
         <a href="#work">Work</a>
