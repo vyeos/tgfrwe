@@ -90,6 +90,60 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         flex: 1;
       }
 
+      .masthead-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid #403d52;
+        background: transparent;
+        color: var(--black);
+        cursor: pointer;
+      }
+
+      .masthead-toggle span {
+        display: block;
+        width: 16px;
+        height: 2px;
+        background: currentColor;
+        position: relative;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .masthead-toggle span::before,
+      .masthead-toggle span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 16px;
+        height: 2px;
+        background: currentColor;
+        transition: transform 0.3s ease, top 0.3s ease;
+      }
+
+      .masthead-toggle span::before {
+        top: -5px;
+      }
+
+      .masthead-toggle span::after {
+        top: 5px;
+      }
+
+      .masthead.is-open .masthead-toggle span {
+        background: transparent;
+      }
+
+      .masthead.is-open .masthead-toggle span::before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+
+      .masthead.is-open .masthead-toggle span::after {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
       .masthead-nav a {
         color: var(--black);
         text-decoration: none;
@@ -689,13 +743,42 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
 
       @media (max-width: 600px) {
         .masthead {
-          flex-direction: column;
-          gap: 1rem;
-          text-align: center;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+          text-align: left;
+          padding: 0.75rem 1.25rem;
         }
 
         .masthead-nav {
-          gap: 1rem;
+          display: none;
+          flex-direction: column;
+          gap: 0.75rem;
+          width: 100%;
+          padding: 0.75rem 0;
+          border-top: 1px solid #403d52;
+        }
+
+        .masthead.is-open .masthead-nav {
+          display: flex;
+        }
+
+        .masthead-toggle {
+          display: inline-flex;
+        }
+
+        .masthead-date {
+          display: none;
+        }
+
+        .masthead-logo {
+          font-size: 1.1rem;
+        }
+
+        .masthead-date {
+          font-size: 0.65rem;
+          letter-spacing: 0.08em;
         }
 
         .hero-left,
@@ -749,14 +832,27 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
   <body>
     <!-- Masthead -->
     <header class="masthead">
-      <div class="masthead-logo">RANDOM GUY</div>
+      <div class="masthead-logo">VYEOS</div>
       <nav class="masthead-nav">
         <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="masthead-toggle" type="button" aria-label="Toggle navigation">
+        <span></span>
+      </button>
       <div class="masthead-date">Current favourite theme — <span class="accent">Rose Pine</span></div>
     </header>
+    <script>
+      const masthead = document.querySelector('.masthead');
+      const toggle = document.querySelector('.masthead-toggle');
+
+      if (masthead && toggle) {
+        toggle.addEventListener('click', () => {
+          masthead.classList.toggle('is-open');
+        });
+      }
+    </script>
 
     <!-- Hero -->
     <section class="hero">
