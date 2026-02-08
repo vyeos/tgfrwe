@@ -423,6 +423,13 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
         overflow: hidden;
       }
 
+      .project-media-asset {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
       .project-placeholder {
         font-family: 'Playfair Display', serif;
         font-size: 3rem;
@@ -667,8 +674,8 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
   <body>
     <!-- Masthead -->
     <header class="masthead">
-      <div class="masthead-logo">VYEOS</div>
-      <div class="masthead-date">THE RANDOM GUY</div>
+      <div class="masthead-logo">THE RANDOM GUY</div>
+      <!-- <div class="masthead-date">THE RANDOM GUY</div> -->
       <nav class="masthead-nav">
         <a href="#about">About</a>
         <a href="#work">Work</a>
@@ -679,10 +686,8 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
     <!-- Hero -->
     <section class="hero">
       <div class="hero-left">
-        <h1 class="hero-headline">
-          Building <em>digital</em> experiences that <em>matter</em>
-        </h1>
-        <p class="hero-subhead">{personalInfo.tagline}</p>
+        <h1 class="hero-headline">{personalInfo.name}</h1>
+        <p class="hero-subhead">Software Developer</p>
         <a href="#work" class="hero-cta">
           View Selected Work
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -789,7 +794,27 @@ import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '.
       {projects.map((project, index) => (
         <article class="project-card">
           <div class="project-media">
-            <span class="project-placeholder">{project.name.split(' ')[0]}</span>
+            {project.media?.url ? (
+              project.media.type === 'video' ? (
+                <video
+                  class="project-media-asset"
+                  src={project.media.url}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                />
+              ) : (
+                <img
+                  class="project-media-asset"
+                  src={project.media.url}
+                  alt={project.media.alt}
+                  loading="lazy"
+                />
+              )
+            ) : (
+              <span class="project-placeholder">{project.name.split(' ')[0]}</span>
+            )}
           </div>
           <div class="project-content">
             <div class="project-number">Project {String(index + 1).padStart(2, '0')}</div>

@@ -146,8 +146,8 @@ export const projects: Project[] = [
     githubUrl: "", // Add GitHub URL
     deployedUrl: "", // Add deployed URL
     media: {
-      type: "image",
-      url: "", // Add image/video URL
+      type: "video",
+      url: "/zendra.mp4",
       alt: "Zendra PDF Preview"
     },
     featured: true
@@ -161,8 +161,8 @@ export const projects: Project[] = [
     githubUrl: "", // Add GitHub URL
     deployedUrl: "", // Add deployed URL
     media: {
-      type: "image",
-      url: "", // Add image/video URL
+      type: "video",
+      url: "/aspdc.mp4",
       alt: "ASPDC Website Preview"
     },
     featured: true
@@ -206,7 +206,7 @@ export const siteMetadata = {
   title: "Rudra Patel | Frontend Developer",
   description: "Frontend developer crafting performant, pixel-perfect web experiences. Specializing in Next.js, TypeScript, and modern web technologies.",
   url: "", // Add your domain when available
-  ogImage: "", // Add OG image URL
+  ogImage: "/me.jpg",
 };
 
 // Fun facts or personal touches
