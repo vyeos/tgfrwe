@@ -110,6 +110,7 @@ export async function getStaticPaths() {
     <main class="blog-main">
       {post ? (
         <article class="blog-post">
+          <a class="blog-back" href="/blog">← All posts</a>
           <header class="blog-post-header">
             <p class="blog-kicker">{post.category?.name || 'Blog'}</p>
             <h1>{post.title}</h1>

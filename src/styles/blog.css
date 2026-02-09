@@ -218,6 +218,22 @@
   padding: 2.5rem;
 }
 
+.blog-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-2);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.blog-back:hover {
+  color: var(--primary);
+}
+
 .blog-post-header {
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--border);
