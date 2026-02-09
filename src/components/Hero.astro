@@ -7,7 +7,7 @@ const { personalInfo } = Astro.props;
 <section class="hero">
   <div class="hero-left">
     <h1 class="hero-headline">{personalInfo.name}</h1>
-    <p class="hero-subhead">Frontend Developer</p>
+    <p class="hero-subhead">aka vyeos</p>
     <a href="#work" class="hero-cta">
       View Selected Work
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,8 +18,8 @@ const { personalInfo } = Astro.props;
   <div class="hero-right">
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="stat-number">vyeos</div>
-        <div class="stat-label">Username</div>
+        <div class="stat-number">{personalInfo.title}</div>
+        <div class="stat-label">Role</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">2nd</div>
