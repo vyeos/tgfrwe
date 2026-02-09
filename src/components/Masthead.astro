@@ -10,28 +10,49 @@ const isActive = (path: string) => {
 };
 ---
 
-<header class="masthead">
-  <div class="masthead-logo">
-    <img src="/vyeos.png" alt="VYEOS" class="logo-mark" />
-  </div>
-      <nav class="masthead-nav">
-        <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
-        <a href="/blog" class:list={[{ active: isActive('/blog') }]}>Blog</a>
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-      </nav>
-  <button class="masthead-toggle" type="button" aria-label="Toggle navigation">
-    <span></span>
-  </button>
-  <div class="masthead-theme">Rose Pine</div>
-</header>
+<div class="masthead-wrapper">
+  <header class="masthead">
+    <div class="masthead-logo">
+      <img src="/vyeos.png" alt="VYEOS" class="logo-mark" />
+    </div>
+    <nav class="masthead-nav desktop-nav">
+      <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
+      <a href="/blog" class:list={[{ active: isActive('/blog') }]}>Blog</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+    </nav>
+    <button class="masthead-toggle" type="button" aria-label="Toggle navigation">
+      <span></span>
+    </button>
+    <div class="masthead-theme">Rose Pine</div>
+  </header>
+  <nav class="masthead-nav mobile-nav">
+    <a href="/" class:list={[{ active: isActive('/') }]}>Home</a>
+    <a href="/blog" class:list={[{ active: isActive('/blog') }]}>Blog</a>
+    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+  </nav>
+</div>
 
 <script>
-  const masthead = document.querySelector('.masthead');
-  const toggle = document.querySelector('.masthead-toggle');
+  const initMasthead = () => {
+    const wrapper = document.querySelector('.masthead-wrapper');
+    const toggle = document.querySelector('.masthead-toggle');
+    const links = document.querySelectorAll('.masthead-nav a');
 
-  if (masthead && toggle) {
+    if (!wrapper || !toggle) return;
+    if (wrapper.dataset.mastheadInitialized === 'true') return;
+    wrapper.dataset.mastheadInitialized = 'true';
+
     toggle.addEventListener('click', () => {
-      masthead.classList.toggle('is-open');
+      wrapper.classList.toggle('is-open');
     });
-  }
+
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        wrapper.classList.remove('is-open');
+      });
+    });
+  };
+
+  initMasthead();
+  document.addEventListener('astro:page-load', initMasthead);
 </script>

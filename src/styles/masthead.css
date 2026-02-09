@@ -1,13 +1,18 @@
+.masthead-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .masthead {
   border-bottom: 2px solid var(--border);
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
   background: var(--card);
-  z-index: 100;
+  position: relative;
+  z-index: 2;
 }
 
 .masthead-logo {
@@ -29,8 +34,8 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--secondary);
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .masthead-nav {
@@ -84,16 +89,16 @@
   top: 5px;
 }
 
-.masthead.is-open .masthead-toggle span {
+.masthead-wrapper.is-open .masthead-toggle span {
   background: transparent;
 }
 
-.masthead.is-open .masthead-toggle span::before {
+.masthead-wrapper.is-open .masthead-toggle span::before {
   top: 0;
   transform: rotate(45deg);
 }
 
-.masthead.is-open .masthead-toggle span::after {
+.masthead-wrapper.is-open .masthead-toggle span::after {
   top: 0;
   transform: rotate(-45deg);
 }
@@ -158,31 +163,14 @@
   width: 100%;
 }
 
+/* Mobile nav - hidden by default */
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .masthead {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    text-align: left;
     padding: 0.75rem 1.25rem;
-  }
-
-  .masthead-nav {
-    display: none;
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 100%;
-    padding: 0.75rem 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .masthead.is-open .masthead-nav {
-    display: flex;
-  }
-
-  .masthead-toggle {
-    display: inline-flex;
   }
 
   .masthead-logo {
@@ -192,5 +180,58 @@
   .logo-mark {
     width: 30px;
     height: 30px;
+  }
+
+  .masthead-toggle {
+    display: inline-flex;
+  }
+
+  .masthead-theme {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+  }
+
+  /* Hide desktop nav, show mobile nav */
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--card);
+    border-bottom: 2px solid var(--border);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: 
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .mobile-nav a {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+  }
+
+  .mobile-nav a::after {
+    bottom: 0;
+  }
+
+  .masthead-wrapper.is-open .mobile-nav {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 }
