@@ -86,24 +86,10 @@ const getCoverImage = (post: unknown) => {
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="blog-page">
     <Masthead />
 
     <main class="blog-main">
-      <section class="blog-hero">
-        <p class="blog-kicker">Field Notes</p>
-        <h1>Writing about systems, interfaces, and the craft of shipping.</h1>
-        <p class="blog-subhead">
-          Notes from building products, debugging performance, and obsessing over UI details.
-          Expect practical writeups, experiments, and sharp takes.
-        </p>
-        <div class="blog-meta">
-          <span>New posts coming soon</span>
-          <span class="blog-dot"></span>
-          <span>{personalInfo.location.full}</span>
-        </div>
-      </section>
-
       <section class="blog-list">
         {posts.length ? (
           posts.map((post) => {
@@ -116,19 +102,38 @@ const getCoverImage = (post: unknown) => {
                     <img src={cover} alt={post.title} loading="lazy" />
                   </div>
                 ) : null}
-                <div class="blog-card-header">
-                  <span class="blog-tag">{post.category?.name || 'Article'}</span>
-                  <span class="blog-date">{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
+                <div class="blog-card-body">
+                  <div class="blog-card-header">
+                    <span class="blog-tag">{post.category?.name || 'Article'}</span>
+                    <span class="blog-date">{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
+                  </div>
+                  <h2>{post.title}</h2>
+                  <p>{post.excerpt || 'Read the full post for details.'}</p>
                 </div>
-                <h2>{post.title}</h2>
-                <p>{post.excerpt || 'Read the full post for details.'}</p>
+                <div class="blog-card-footer">
+                  <span class="blog-card-link">Read more <span class="arrow">&rarr;</span></span>
+                </div>
               </a>
             );
           })
         ) : (
           <div class="blog-empty">
-            <h2>No posts yet.</h2>
-            <p>Once you publish on EasyBlog, they will show up here automatically.</p>
+            <div class="blog-empty-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <line x1="10" y1="9" x2="8" y2="9"></line>
+              </svg>
+            </div>
+            <h2>Nothing here yet</h2>
+            <p>Posts will appear here once published. Check back soon for fresh content on systems, interfaces, and shipping great products.</p>
+            <div class="blog-empty-decoration">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         )}
       </section>
