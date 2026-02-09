@@ -135,13 +135,27 @@
   transition: width 0.3s ease;
 }
 
-.masthead-nav a:hover::after {
+.masthead-nav a:not(.active):hover::after {
   width: 100%;
 }
 
-.masthead-nav a:hover::before {
+.masthead-nav a:not(.active):hover::before {
   border-color: var(--primary);
   transform: rotate(90deg) scale(1.1);
+}
+
+/* Active state */
+.masthead-nav a.active {
+  color: var(--primary);
+}
+
+.masthead-nav a.active::before {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.masthead-nav a.active::after {
+  width: 100%;
 }
 
 @media (max-width: 600px) {
