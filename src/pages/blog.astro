@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import '../styles/blog.css';
+import { siteMetadata, personalInfo } from '../data/portfolio';
+import Masthead from '../components/Masthead.astro';
+import FooterSection from '../components/FooterSection.astro';
+
+export const prerender = false;
+
+const apiUrl = import.meta.env.EASYBLOG_API_URL ?? 'https://api.easyblog.io';
+const apiKey = import.meta.env.EASYBLOG_API_KEY;
+const projectId = import.meta.env.EASYBLOG_PROJECT_ID;
+
+const posts = [];
+
+if (apiKey && projectId) {
+  try {
+    const listUrl = new URL(`${apiUrl}/v1/blogs`);
+    listUrl.searchParams.set('project_id', projectId);
+    listUrl.searchParams.set('limit', '50');
+
+    const response = await fetch(listUrl.toString(), {
+      headers: {
+        'x-api-key': apiKey,
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (Array.isArray(data?.blogs)) {
+        posts.push(...data.blogs);
+      }
+    }
+  } catch (error) {
+    // Swallow errors to keep page rendering.
+  }
+}
+
+const getCoverImage = (post) =>
+  post?.cover_image ||
+  post?.image ||
+  post?.thumbnail ||
+  post?.thumbnail_url ||
+  post?.featured_image ||
+  post?.hero_image ||
+  '';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={`Blog — ${siteMetadata.description}`} />
+    <title>{`Blog | ${siteMetadata.title}`}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <Masthead />
+
+    <main class="blog-main">
+      <section class="blog-hero">
+        <p class="blog-kicker">Field Notes</p>
+        <h1>Writing about systems, interfaces, and the craft of shipping.</h1>
+        <p class="blog-subhead">
+          Notes from building products, debugging performance, and obsessing over UI details.
+          Expect practical writeups, experiments, and sharp takes.
+        </p>
+        <div class="blog-meta">
+          <span>New posts coming soon</span>
+          <span class="blog-dot"></span>
+          <span>{personalInfo.location.full}</span>
+        </div>
+      </section>
+
+      <section class="blog-list">
+        {posts.length ? (
+          posts.map((post) => {
+            const slug = post.slug || post.id;
+            const cover = getCoverImage(post);
+            return (
+              <article class="blog-card">
+                {cover ? (
+                  <a class="blog-card-media" href={`/blog/${slug}`}>
+                    <img src={cover} alt={post.title} loading="lazy" />
+                  </a>
+                ) : null}
+                <div class="blog-card-header">
+                  <span class="blog-tag">{post.category || 'Article'}</span>
+                  <span class="blog-date">{post.created_at ? new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
+                </div>
+                <h2><a href={`/blog/${slug}`}>{post.title}</a></h2>
+                <p>{post.excerpt || 'Read the full post for details.'}</p>
+              </article>
+            );
+          })
+        ) : (
+          <div class="blog-empty">
+            <h2>No posts yet.</h2>
+            <p>Once you publish on EasyBlog, they will show up here automatically.</p>
+          </div>
+        )}
+      </section>
+    </main>
+
+    <FooterSection personalInfo={personalInfo} />
+  </body>
+</html>
