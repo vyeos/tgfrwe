@@ -98,6 +98,8 @@
   color: var(--muted-foreground);
   background: var(--background);
   border-top: 2px solid var(--border);
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer-name {
@@ -108,6 +110,23 @@
 
 .footer-copyright {
   display: inline-flex;
+}
+
+.footer-center {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+}
+
+.footer-center a {
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.footer-center a:hover {
+  color: var(--primary);
 }
 
 @media (max-width: 1024px) {

@@ -2,6 +2,9 @@
 import '../styles/footer.css';
 
 const { personalInfo, variant = 'minimal' } = Astro.props;
+const github = personalInfo.socials.find((social) => social.platform === 'GitHub');
+const twitter = personalInfo.socials.find((social) => social.platform === 'X');
+const email = personalInfo.email ? { url: `mailto:${personalInfo.email}`, label: 'Email' } : null;
 ---
 
 {variant === 'full' ? (
@@ -44,5 +47,16 @@ const { personalInfo, variant = 'minimal' } = Astro.props;
     </svg>
     2026 {personalInfo.name}
   </span>
+  <div class="footer-center">
+    {twitter?.url ? (
+      <a href={twitter.url} target="_blank" rel="noopener noreferrer">Twitter</a>
+    ) : null}
+    {github?.url ? (
+      <a href={github.url} target="_blank" rel="noopener noreferrer">GitHub</a>
+    ) : null}
+    {email?.url ? (
+      <a href={email.url}>Email</a>
+    ) : null}
+  </div>
   <span>Open for collaboration</span>
 </div>
