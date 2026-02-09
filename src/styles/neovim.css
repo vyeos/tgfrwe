@@ -1,14 +1,14 @@
 .neovim-section {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  border-bottom: var(--border);
-  background: var(--surface-1);
+  border-bottom: 2px solid var(--border);
+  background: var(--card);
 }
 
 .neovim-content {
   padding: 4rem;
-  border-right: var(--border);
-  background: var(--surface-0);
+  border-right: 2px solid var(--border);
+  background: var(--background);
 }
 
 .neovim-title {
@@ -17,7 +17,7 @@
   font-weight: 900;
   margin-bottom: 1.5rem;
   line-height: 1;
-  color: var(--text-1);
+  color: var(--foreground);
 }
 
 .neovim-title span {
@@ -27,12 +27,12 @@
 .neovim-desc {
   font-size: 1rem;
   line-height: 1.8;
-  color: var(--text-2);
+  color: var(--muted-foreground);
   max-width: 500px;
 }
 
 .neovim-visual {
-  background: var(--surface-2);
+  background: var(--popover);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,32 +41,32 @@
 
 .terminal-mock {
   width: 100%;
-  font-family: 'Space Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--accent-4);
+  color: var(--accent);
   line-height: 1.6;
-  background: var(--surface-0);
-  border: 1px solid var(--border-subtle);
+  background: var(--background);
+  border: 1px solid var(--border);
   padding: 1.5rem;
 }
 
 .terminal-mock .comment {
-  color: var(--text-3);
+  color: var(--muted-foreground);
 }
 
 .terminal-mock .keyword {
-  color: var(--accent-3);
+  color: var(--secondary);
 }
 
 .terminal-mock .string {
-  color: var(--accent-5);
+  color: var(--primary);
 }
 
 .terminal-mock .cursor {
   display: inline-block;
   width: 8px;
   height: 14px;
-  background: var(--accent-4);
+  background: var(--accent);
   animation: blink 1s infinite;
 }
 

@@ -1,64 +1,24 @@
 :root {
-  /* Rose Pine Color Palette */
-  --rp-base: #191724;
-  --rp-surface: #1f1d2e;
-  --rp-overlay: #26233a;
-  --rp-muted: #6e6a86;
-  --rp-subtle: #908caa;
-  --rp-text: #e0def4;
-
-  /* Rose Pine Accent Colors */
-  --rp-love: #eb6f92;
-  --rp-gold: #f6c177;
-  --rp-rose: #ebbcba;
-  --rp-pine: #31748f;
-  --rp-foam: #9ccfd8;
-  --rp-iris: #c4a7e7;
-
-  /* Rose Pine Highlights */
-  --rp-highlight-low: #21202e;
-  --rp-highlight-med: #403d52;
-  --rp-highlight-high: #524f67;
-
-  /* Color precedence */
-  --surface-0: var(--rp-base);
-  --surface-1: var(--rp-surface);
-  --surface-2: var(--rp-overlay);
-  --surface-3: var(--rp-highlight-low);
-
-  --text-1: var(--rp-text);
-  --text-2: var(--rp-subtle);
-  --text-3: var(--rp-muted);
-
-  --accent-1: var(--rp-love);
-  --accent-2: var(--rp-rose);
-  --accent-3: var(--rp-iris);
-  --accent-4: var(--rp-foam);
-  --accent-5: var(--rp-gold);
-  --accent-6: var(--rp-pine);
-
-  --border-color: var(--rp-highlight-med);
-  --border-subtle: var(--rp-highlight-low);
-  --border-strong: var(--rp-highlight-high);
-
-  /* Semantic aliases (for easier usage) */
-  --bg: var(--surface-0);
-  --bg-surface: var(--surface-1);
-  --bg-overlay: var(--surface-2);
-  --fg: var(--text-1);
-  --fg-muted: var(--text-2);
-  --fg-dim: var(--text-3);
-  --accent: var(--accent-1);
-  --accent-secondary: var(--accent-3);
-  --accent-tertiary: var(--accent-4);
-
-  /* Derived values */
-  --border: 2px solid var(--border-color);
-  --border-thin: 1px solid var(--border-color);
-  --fg-alpha-20: rgba(224, 222, 244, 0.2);
-  --fg-alpha-12: rgba(224, 222, 244, 0.12);
-  --fg-alpha-10: rgba(224, 222, 244, 0.1);
-  --fg-alpha-04: rgba(224, 222, 244, 0.04);
+  --background: #191724;
+  --foreground: #e0def4;
+  --card: #1f1d2e;
+  --card-foreground: #e0def4;
+  --popover: #26233a;
+  --popover-foreground: #e0def4;
+  --primary: #eb6f92;
+  --primary-foreground: #191724;
+  --secondary: #c4a7e7;
+  --secondary-foreground: #191724;
+  --muted: #21202e;
+  --muted-foreground: #908caa;
+  --accent: #9ccfd8;
+  --accent-foreground: #191724;
+  --destructive: #eb6f92;
+  --destructive-foreground: #191724;
+  --border: #403d52;
+  --input: #26233a;
+  --ring: #c4a7e7;
+  --font-mono: "Space Mono", monospace;
 }
 
 * {
@@ -73,14 +33,14 @@ html {
 }
 
 body {
-  font-family: 'Space Mono', monospace;
-  background: var(--bg);
-  color: var(--fg);
+  font-family: var(--font-mono);
+  background: var(--background);
+  color: var(--foreground);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--bg);
+  background: var(--primary);
+  color: var(--primary-foreground);
 }

@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 90vh;
-  border-bottom: var(--border);
-  background: var(--surface-0);
+  border-bottom: 2px solid var(--border);
+  background: var(--background);
 }
 
 .hero-left {
@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-right: var(--border);
-  background: var(--surface-0);
+  border-right: 2px solid var(--border);
+  background: var(--background);
 }
 
 .hero-headline {
@@ -22,7 +22,7 @@
   line-height: 0.95;
   letter-spacing: -0.03em;
   margin-bottom: 2rem;
-  color: var(--accent-1);
+  color: var(--primary);
 }
 
 .hero-headline em {
@@ -33,7 +33,7 @@
 .hero-subhead {
   font-size: 1.1rem;
   max-width: 400px;
-  color: var(--accent-2);
+  color: var(--secondary);
   margin-bottom: 3rem;
 }
 
@@ -42,8 +42,8 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 2rem;
-  background: var(--accent-1);
-  color: var(--surface-0);
+  background: var(--primary);
+  color: var(--primary-foreground);
   text-decoration: none;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -52,7 +52,7 @@
 }
 
 .hero-cta:hover {
-  background: var(--accent-3);
+  background: var(--secondary);
   transform: translateX(10px);
 }
 
@@ -71,8 +71,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--surface-1);
-  color: var(--fg);
+  background: var(--card);
+  color: var(--card-foreground);
 }
 
 .hero-stats {
@@ -81,7 +81,7 @@
 }
 
 .stat-item {
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border);
   padding-bottom: 2rem;
 }
 
@@ -90,7 +90,7 @@
   font-size: 4rem;
   font-weight: 900;
   line-height: 1;
-  color: var(--accent-5);
+  color: var(--accent);
 }
 
 .stat-label {
@@ -109,10 +109,10 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border);
   margin-top: 3rem;
-  color: var(--accent-4);
-  background: var(--surface-2);
+  color: var(--accent);
+  background: var(--popover);
 }
 
 @media (max-width: 1024px) {

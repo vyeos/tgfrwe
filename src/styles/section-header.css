@@ -4,16 +4,16 @@
   align-items: center;
   gap: 2rem;
   padding: 2rem;
-  border-bottom: var(--border);
+  border-bottom: 2px solid var(--border);
   scroll-margin-top: 70px;
-  background: var(--surface-1);
+  background: var(--card);
 }
 
 .section-number {
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   font-weight: 400;
-  color: var(--accent-2);
+  color: var(--secondary);
 }
 
 .section-title {
@@ -21,10 +21,10 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--accent-3);
+  color: var(--primary);
 }
 
 .section-line {
   height: 1px;
-  background: var(--accent-4);
+  background: var(--accent);
 }
