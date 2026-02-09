@@ -66,8 +66,8 @@
 }
 
 .skill-tag.accent {
-  background: var(--secondary);
-  color: var(--secondary-foreground);
+  background: var(--accent-2);
+  color: var(--accent-2-foreground);
 }
 
 @media (max-width: 1024px) {
