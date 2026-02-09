@@ -11,6 +11,31 @@ const apiUrl = import.meta.env.EASYBLOG_API_URL ?? 'https://api.easyblog.io';
 const apiKey = import.meta.env.EASYBLOG_API_KEY;
 const projectId = import.meta.env.EASYBLOG_PROJECT_ID;
 
+type EasyBlogPost = {
+  title: string;
+  project_id: string;
+  word_count: number;
+  author: string;
+  author_id: string;
+  slug: string;
+  tags: string[];
+  excerpt: string;
+  category: string;
+  created_at: string;
+  updated_at: string;
+  cover_image?: string;
+  image?: string;
+  thumbnail?: string;
+  thumbnail_url?: string;
+  featured_image?: string;
+  hero_image?: string;
+};
+
+type EasyBlogListResponse = {
+  blogs: EasyBlogPost[];
+  total: number;
+};
+
 if (apiKey && projectId) {
   try {
     const listUrl = new URL(`${apiUrl}/v1/blogs`);
@@ -24,7 +49,7 @@ if (apiKey && projectId) {
     });
 
     if (response.ok) {
-      const data = await response.json();
+      const data = (await response.json()) as EasyBlogListResponse;
       if (Array.isArray(data?.blogs)) {
         posts.push(...data.blogs);
       }
@@ -77,23 +102,23 @@ const getCoverImage = (post) =>
 
       <section class="blog-list">
         {posts.length ? (
-          posts.map((post) => {
-            const slug = post.slug || post.id;
+          (posts as EasyBlogPost[]).map((post) => {
+            const slug = post.slug;
             const cover = getCoverImage(post);
             return (
-              <article class="blog-card">
+              <a class="blog-card" href={`/blog/${slug}`}>
                 {cover ? (
-                  <a class="blog-card-media" href={`/blog/${slug}`}>
+                  <div class="blog-card-media">
                     <img src={cover} alt={post.title} loading="lazy" />
-                  </a>
+                  </div>
                 ) : null}
                 <div class="blog-card-header">
                   <span class="blog-tag">{post.category || 'Article'}</span>
                   <span class="blog-date">{post.created_at ? new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
                 </div>
-                <h2><a href={`/blog/${slug}`}>{post.title}</a></h2>
+                <h2>{post.title}</h2>
                 <p>{post.excerpt || 'Read the full post for details.'}</p>
-              </article>
+              </a>
             );
           })
         ) : (

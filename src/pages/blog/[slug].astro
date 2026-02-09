@@ -5,7 +5,35 @@ import { personalInfo } from '../../data/portfolio';
 import Masthead from '../../components/Masthead.astro';
 import FooterSection from '../../components/FooterSection.astro';
 
-const { post } = Astro.props;
+type EasyBlogPost = {
+  title: string;
+  project_id: string;
+  word_count: number;
+  author: string;
+  author_id: string;
+  slug: string;
+  tags: string[];
+  excerpt: string;
+  category: string;
+  created_at: string;
+  updated_at: string;
+  html_content?: string;
+  html?: string;
+  content_html?: string;
+  content?: string;
+  cover_image?: string;
+  image?: string;
+  thumbnail?: string;
+  thumbnail_url?: string;
+  featured_image?: string;
+  hero_image?: string;
+};
+
+type EasyBlogDetailResponse = {
+  blog: EasyBlogPost;
+};
+
+const { post } = Astro.props as { post: EasyBlogPost | null };
 
 const getCoverImage = (post) =>
   post?.cover_image ||
@@ -40,13 +68,27 @@ export async function getStaticPaths() {
       return [];
     }
 
-    const data = await listResponse.json();
-    const blogs = Array.isArray(data?.blogs) ? data.blogs : [];
+    const listData = (await listResponse.json()) as { blogs: EasyBlogPost[] };
+    const blogs = Array.isArray(listData?.blogs) ? listData.blogs : [];
 
-    return blogs.map((item) => ({
-      params: { slug: item.slug || item.id },
-      props: { post: item },
-    }));
+    const detailResults = await Promise.all(
+      blogs.map(async (item) => {
+        const detailResponse = await fetch(`${apiUrl}/v1/blogs/${item.slug}`, {
+          headers: {
+            'x-api-key': apiKey,
+          },
+        });
+
+        if (!detailResponse.ok) {
+          return null;
+        }
+
+        const detailData = (await detailResponse.json()) as EasyBlogDetailResponse;
+        return detailData?.blog ? { params: { slug: item.slug }, props: { post: detailData.blog } } : null;
+      })
+    );
+
+    return detailResults.filter(Boolean);
   } catch (error) {
     return [];
   }
@@ -89,7 +131,7 @@ export async function getStaticPaths() {
             </div>
           ) : null}
 
-          <div class="blog-content" set:html={post.html || post.content_html || post.content || ''}></div>
+          <div class="blog-content" set:html={post.html_content || post.html || post.content_html || post.content || ''}></div>
         </article>
       ) : (
         <div class="blog-empty">
