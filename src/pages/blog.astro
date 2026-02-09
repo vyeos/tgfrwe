@@ -4,6 +4,7 @@ import '../styles/blog.css';
 import { siteMetadata, personalInfo } from '../data/portfolio';
 import Masthead from '../components/Masthead.astro';
 import FooterSection from '../components/FooterSection.astro';
+import { getCached } from '../lib/easyblog-cache';
 import { ViewTransitions } from 'astro:transitions';
 
 const posts = [];
@@ -43,17 +44,21 @@ if (apiKey && projectId) {
     listUrl.searchParams.set('project_id', projectId);
     listUrl.searchParams.set('limit', '50');
 
-    const response = await fetch(listUrl.toString(), {
-      headers: {
-        'x-api-key': apiKey,
-      },
+    const data = await getCached('easyblog:list', async () => {
+      const response = await fetch(listUrl.toString(), {
+        headers: {
+          'x-api-key': apiKey,
+        },
+      });
+
+      if (!response.ok) {
+        return { blogs: [], total: 0 } as EasyBlogListResponse;
+      }
+      return (await response.json()) as EasyBlogListResponse;
     });
 
-    if (response.ok) {
-      const data = (await response.json()) as EasyBlogListResponse;
-      if (Array.isArray(data?.blogs)) {
-        posts.push(...data.blogs);
-      }
+    if (Array.isArray(data?.blogs)) {
+      posts.push(...data.blogs);
     }
   } catch (error) {
     // Swallow errors to keep page rendering.

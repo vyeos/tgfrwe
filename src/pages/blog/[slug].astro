@@ -4,6 +4,7 @@ import '../../styles/blog.css';
 import { personalInfo } from '../../data/portfolio';
 import Masthead from '../../components/Masthead.astro';
 import FooterSection from '../../components/FooterSection.astro';
+import { getCached } from '../../lib/easyblog-cache';
 import { ViewTransitions } from 'astro:transitions';
 
 type EasyBlogPost = {
@@ -59,33 +60,41 @@ export async function getStaticPaths() {
     listUrl.searchParams.set('project_id', projectId);
     listUrl.searchParams.set('limit', '100');
 
-    const listResponse = await fetch(listUrl.toString(), {
-      headers: {
-        'x-api-key': apiKey,
-      },
+    const listData = await getCached('easyblog:list', async () => {
+      const listResponse = await fetch(listUrl.toString(), {
+        headers: {
+          'x-api-key': apiKey,
+        },
+      });
+
+      if (!listResponse.ok) {
+        return { blogs: [] as EasyBlogPost[] };
+      }
+
+      return (await listResponse.json()) as { blogs: EasyBlogPost[] };
     });
 
-    if (!listResponse.ok) {
-      return [];
-    }
-
-    const listData = (await listResponse.json()) as { blogs: EasyBlogPost[] };
     const blogs = Array.isArray(listData?.blogs) ? listData.blogs : [];
 
     const detailResults = await Promise.all(
       blogs.map(async (item) => {
-        const detailResponse = await fetch(`${apiUrl}/v1/blogs/${item.slug}`, {
-          headers: {
-            'x-api-key': apiKey,
-          },
+        const detailData = await getCached(`easyblog:post:${item.slug}`, async () => {
+          const detailResponse = await fetch(`${apiUrl}/v1/blogs/${item.slug}`, {
+            headers: {
+              'x-api-key': apiKey,
+            },
+          });
+
+          if (!detailResponse.ok) {
+            return null;
+          }
+
+          return (await detailResponse.json()) as EasyBlogDetailResponse;
         });
 
-        if (!detailResponse.ok) {
-          return null;
-        }
-
-        const detailData = (await detailResponse.json()) as EasyBlogDetailResponse;
-        return detailData?.blog ? { params: { slug: item.slug }, props: { post: detailData.blog } } : null;
+        return detailData?.blog
+          ? { params: { slug: item.slug }, props: { post: detailData.blog } }
+          : null;
       })
     );
 
