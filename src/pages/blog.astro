@@ -111,7 +111,13 @@ const getCoverImage = (post: unknown) => {
                   <p>{post.excerpt || 'Read the full post for details.'}</p>
                 </div>
                 <div class="blog-card-footer">
-                  <span class="blog-card-link">Read more <span class="arrow">&rarr;</span></span>
+                  <span class="blog-card-link">
+                    Read more
+                    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l6 7-6 7"></path>
+                    </svg>
+                  </span>
                 </div>
               </a>
             );

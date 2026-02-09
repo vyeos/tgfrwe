@@ -129,7 +129,13 @@ export async function getStaticPaths() {
     <main class="blog-main">
       {post ? (
         <article class="blog-post">
-          <a class="blog-back" href="/blog">← All posts</a>
+          <a class="blog-back" href="/blog">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5"></path>
+              <path d="M12 19l-7-7 7-7"></path>
+            </svg>
+            All posts
+          </a>
           <header class="blog-post-header">
             <div class="blog-kicker-row">
               <p class="blog-kicker">{post.category?.name || 'Blog'}</p>
