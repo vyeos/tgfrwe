@@ -235,8 +235,8 @@ export const siteMetadata = {
   title: "Rudra Patel | Frontend Developer",
   description:
     "Frontend developer crafting performant, pixel-perfect web experiences. Specializing in Next.js, TypeScript, and modern web technologies.",
-  url: "vyeos.me",
-  ogImage: "/me.jpg",
+  url: "rudrap.me",
+  ogImage: "/vyeos.png",
 };
 
 // Fun facts or personal touches
