@@ -5,12 +5,7 @@ import { personalInfo } from '../../data/portfolio';
 import Masthead from '../../components/Masthead.astro';
 import FooterSection from '../../components/FooterSection.astro';
 
-export const prerender = false;
-
-const apiUrl = import.meta.env.EASYBLOG_API_URL ?? 'https://api.easyblog.io';
-const apiKey = import.meta.env.EASYBLOG_API_KEY;
-const projectId = import.meta.env.EASYBLOG_PROJECT_ID;
-const { slug } = Astro.params;
+const { post } = Astro.props;
 
 const getCoverImage = (post) =>
   post?.cover_image ||
@@ -21,9 +16,15 @@ const getCoverImage = (post) =>
   post?.hero_image ||
   '';
 
-let post = null;
+export async function getStaticPaths() {
+  const apiUrl = import.meta.env.EASYBLOG_API_URL ?? 'https://api.easyblog.io';
+  const apiKey = import.meta.env.EASYBLOG_API_KEY;
+  const projectId = import.meta.env.EASYBLOG_PROJECT_ID;
 
-if (apiKey && projectId && slug) {
+  if (!apiKey || !projectId) {
+    return [];
+  }
+
   try {
     const listUrl = new URL(`${apiUrl}/v1/blogs`);
     listUrl.searchParams.set('project_id', projectId);
@@ -35,17 +36,19 @@ if (apiKey && projectId && slug) {
       },
     });
 
-    if (listResponse.ok) {
-      const data = await listResponse.json();
-      const blogs = Array.isArray(data?.blogs) ? data.blogs : [];
-      post = blogs.find((item) => item.slug === slug || item.id === slug);
+    if (!listResponse.ok) {
+      return [];
     }
 
-    if (!post) {
-      Astro.response.status = 404;
-    }
+    const data = await listResponse.json();
+    const blogs = Array.isArray(data?.blogs) ? data.blogs : [];
+
+    return blogs.map((item) => ({
+      params: { slug: item.slug || item.id },
+      props: { post: item },
+    }));
   } catch (error) {
-    Astro.response.status = 500;
+    return [];
   }
 }
 ---

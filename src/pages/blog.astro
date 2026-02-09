@@ -5,13 +5,11 @@ import { siteMetadata, personalInfo } from '../data/portfolio';
 import Masthead from '../components/Masthead.astro';
 import FooterSection from '../components/FooterSection.astro';
 
-export const prerender = false;
+const posts = [];
 
 const apiUrl = import.meta.env.EASYBLOG_API_URL ?? 'https://api.easyblog.io';
 const apiKey = import.meta.env.EASYBLOG_API_KEY;
 const projectId = import.meta.env.EASYBLOG_PROJECT_ID;
-
-const posts = [];
 
 if (apiKey && projectId) {
   try {
