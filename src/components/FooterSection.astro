@@ -1,0 +1,38 @@
+---
+import '../styles/footer.css';
+
+const { personalInfo } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="footer-main">
+    <h2 class="footer-headline">
+      Keep those <em>damn hands</em> on your keyboard
+    </h2>
+  </div>
+  <div class="footer-links">
+    <div class="footer-links-title">Connect</div>
+    <ul>
+      {personalInfo.socials.filter(social => social.platform !== "Email").map(social => (
+        <li>
+          <a href={social.url} target="_blank" rel="noopener noreferrer">
+            {social.platform}
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="footer-contact">
+    <div class="footer-contact-title">Email</div>
+    <a href={`mailto:${personalInfo.email}`} class="footer-email">{personalInfo.email}</a>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span>&copy; 2024 {personalInfo.name}</span>
+  <span>Open for collaboration</span>
+</div>

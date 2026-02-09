@@ -1,0 +1,28 @@
+.section-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border-bottom: var(--border);
+  scroll-margin-top: 70px;
+}
+
+.section-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+.section-line {
+  height: 1px;
+  background: var(--fg);
+}

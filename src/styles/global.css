@@ -1,0 +1,67 @@
+:root {
+  /* Rose Pine Color Palette */
+  --rp-base: #191724;
+  --rp-surface: #1f1d2e;
+  --rp-overlay: #26233a;
+  --rp-muted: #6e6a86;
+  --rp-subtle: #908caa;
+  --rp-text: #e0def4;
+
+  /* Rose Pine Accent Colors */
+  --rp-love: #eb6f92;
+  --rp-gold: #f6c177;
+  --rp-rose: #ebbcba;
+  --rp-pine: #31748f;
+  --rp-foam: #9ccfd8;
+  --rp-iris: #c4a7e7;
+
+  /* Rose Pine Highlights */
+  --rp-highlight-low: #21202e;
+  --rp-highlight-med: #403d52;
+  --rp-highlight-high: #524f67;
+
+  /* Semantic Aliases (for easier usage) */
+  --bg: var(--rp-base);
+  --bg-surface: var(--rp-surface);
+  --bg-overlay: var(--rp-overlay);
+  --fg: var(--rp-text);
+  --fg-muted: var(--rp-subtle);
+  --fg-dim: var(--rp-muted);
+  --accent: var(--rp-love);
+  --accent-secondary: var(--rp-iris);
+  --accent-tertiary: var(--rp-foam);
+  --border-color: var(--rp-highlight-med);
+  --border-subtle: var(--rp-highlight-low);
+
+  /* Derived values */
+  --border: 2px solid var(--border-color);
+  --border-thin: 1px solid var(--border-color);
+  --fg-alpha-20: rgba(224, 222, 244, 0.2);
+  --fg-alpha-12: rgba(224, 222, 244, 0.12);
+  --fg-alpha-10: rgba(224, 222, 244, 0.1);
+  --fg-alpha-04: rgba(224, 222, 244, 0.04);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Space Mono', monospace;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}

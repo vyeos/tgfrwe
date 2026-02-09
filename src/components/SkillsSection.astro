@@ -1,0 +1,46 @@
+---
+import '../styles/skills.css';
+
+const { personalInfo, skills } = Astro.props;
+---
+
+<section class="skills-section">
+  <div class="skills-sidebar">
+    <h3>Frontend Developer with Full-Stack Capabilities</h3>
+    <p>{personalInfo.bio}</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-category-title">Primary Stack</div>
+      <div class="skill-list">
+        {skills.filter(s => s.category === 'primary').map(skill => (
+          <span class="skill-tag">{skill.name}</span>
+        ))}
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-title">Languages</div>
+      <div class="skill-list">
+        {skills.filter(s => s.category === 'language').map(skill => (
+          <span class="skill-tag">{skill.name}</span>
+        ))}
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-title">Tools & Frameworks</div>
+      <div class="skill-list">
+        {skills.filter(s => s.category === 'tool').map(skill => (
+          <span class={`skill-tag ${skill.name === 'Neovim' ? 'accent' : ''}`}>{skill.name}</span>
+        ))}
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-title">Databases</div>
+      <div class="skill-list">
+        {skills.filter(s => s.category === 'database').map(skill => (
+          <span class="skill-tag">{skill.name}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

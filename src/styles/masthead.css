@@ -1,0 +1,188 @@
+.masthead {
+  border-bottom: var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
+
+.masthead-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.logo-mark {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.masthead-date {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-muted);
+}
+
+.masthead-date .accent {
+  color: var(--accent);
+}
+
+.masthead-nav {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex: 1;
+}
+
+.masthead-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: var(--border-thin);
+  background: transparent;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.masthead-toggle span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  position: relative;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.masthead-toggle span::before,
+.masthead-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.3s ease, top 0.3s ease;
+}
+
+.masthead-toggle span::before {
+  top: -5px;
+}
+
+.masthead-toggle span::after {
+  top: 5px;
+}
+
+.masthead.is-open .masthead-toggle span {
+  background: transparent;
+}
+
+.masthead.is-open .masthead-toggle span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.masthead.is-open .masthead-toggle span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.masthead-nav a {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.2rem;
+  font-weight: 700;
+}
+
+.masthead-nav a::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--fg);
+  transform: rotate(45deg);
+  display: inline-block;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.masthead-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.masthead-nav a:hover::after {
+  width: 100%;
+}
+
+.masthead-nav a:hover::before {
+  border-color: var(--accent);
+  transform: rotate(90deg) scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .masthead {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    text-align: left;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .masthead-nav {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 0;
+    border-top: var(--border-thin);
+  }
+
+  .masthead.is-open .masthead-nav {
+    display: flex;
+  }
+
+  .masthead-toggle {
+    display: inline-flex;
+  }
+
+  .masthead-date {
+    display: none;
+  }
+
+  .masthead-logo {
+    font-size: 1.1rem;
+  }
+
+  .logo-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .masthead-date {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+  }
+}
