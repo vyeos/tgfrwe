@@ -37,6 +37,12 @@ const { personalInfo, variant = 'minimal' } = Astro.props;
 ) : null}
 
 <div class="footer-bottom">
-  <span>&copy; 2024 {personalInfo.name}</span>
+  <span class="footer-name">
+    <svg class="footer-copyright" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <rect x="3" y="3" width="18" height="18" rx="0" ry="0"></rect>
+      <path d="M15 9.5a3.5 3.5 0 1 0 0 5"></path>
+    </svg>
+    2026 {personalInfo.name}
+  </span>
   <span>Open for collaboration</span>
 </div>

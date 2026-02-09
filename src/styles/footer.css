@@ -12,7 +12,7 @@
 }
 
 .footer-headline {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1.1;
@@ -98,6 +98,16 @@
   color: var(--muted-foreground);
   background: var(--background);
   border-top: 2px solid var(--border);
+}
+
+.footer-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-copyright {
+  display: inline-flex;
 }
 
 @media (max-width: 1024px) {
