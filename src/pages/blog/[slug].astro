@@ -131,12 +131,15 @@ export async function getStaticPaths() {
         <article class="blog-post">
           <a class="blog-back" href="/blog">← All posts</a>
           <header class="blog-post-header">
-            <p class="blog-kicker">{post.category?.name || 'Blog'}</p>
+            <div class="blog-kicker-row">
+              <p class="blog-kicker">{post.category?.name || 'Blog'}</p>
+              <span class="blog-kicker-date">
+                {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}
+              </span>
+            </div>
             <h1>{post.title}</h1>
             <p class="blog-subhead">{post.excerpt}</p>
             <div class="blog-meta">
-              <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
-              <span class="blog-dot"></span>
               <span>{post?.author?.name}</span>
             </div>
           </header>
