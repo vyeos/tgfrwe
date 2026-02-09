@@ -104,20 +104,20 @@ export async function getStaticPaths() {
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   </head>
 
-  <body>
+  <body class="blog-page">
     <Masthead />
 
     <main class="blog-main">
       {post ? (
         <article class="blog-post">
           <header class="blog-post-header">
-            <p class="blog-kicker">{post.category?.name || 'Article'}</p>
+            <p class="blog-kicker">{post.category?.name || 'Blog'}</p>
             <h1>{post.title}</h1>
             <p class="blog-subhead">{post.excerpt}</p>
             <div class="blog-meta">
               <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
               <span class="blog-dot"></span>
-              <span>{personalInfo.name}</span>
+              <span>{post?.author?.name}</span>
             </div>
           </header>
 

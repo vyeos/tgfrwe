@@ -220,6 +220,20 @@
 
 .blog-post-header {
   margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+}
+
+.blog-post-header h1 {
+  color: var(--primary);
+}
+
+.blog-post-header .blog-subhead {
+  color: var(--secondary);
+}
+
+.blog-post-header .blog-meta {
+  color: var(--accent);
 }
 
 .blog-post-media {
