@@ -20,18 +20,37 @@
   --rp-highlight-med: #403d52;
   --rp-highlight-high: #524f67;
 
-  /* Semantic Aliases (for easier usage) */
-  --bg: var(--rp-base);
-  --bg-surface: var(--rp-surface);
-  --bg-overlay: var(--rp-overlay);
-  --fg: var(--rp-text);
-  --fg-muted: var(--rp-subtle);
-  --fg-dim: var(--rp-muted);
-  --accent: var(--rp-love);
-  --accent-secondary: var(--rp-iris);
-  --accent-tertiary: var(--rp-foam);
+  /* Color precedence */
+  --surface-0: var(--rp-base);
+  --surface-1: var(--rp-surface);
+  --surface-2: var(--rp-overlay);
+  --surface-3: var(--rp-highlight-low);
+
+  --text-1: var(--rp-text);
+  --text-2: var(--rp-subtle);
+  --text-3: var(--rp-muted);
+
+  --accent-1: var(--rp-love);
+  --accent-2: var(--rp-rose);
+  --accent-3: var(--rp-iris);
+  --accent-4: var(--rp-foam);
+  --accent-5: var(--rp-gold);
+  --accent-6: var(--rp-pine);
+
   --border-color: var(--rp-highlight-med);
   --border-subtle: var(--rp-highlight-low);
+  --border-strong: var(--rp-highlight-high);
+
+  /* Semantic aliases (for easier usage) */
+  --bg: var(--surface-0);
+  --bg-surface: var(--surface-1);
+  --bg-overlay: var(--surface-2);
+  --fg: var(--text-1);
+  --fg-muted: var(--text-2);
+  --fg-dim: var(--text-3);
+  --accent: var(--accent-1);
+  --accent-secondary: var(--accent-3);
+  --accent-tertiary: var(--accent-4);
 
   /* Derived values */
   --border: 2px solid var(--border-color);

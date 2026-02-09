@@ -1,6 +1,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  background: var(--surface-0);
 }
 
 .project-card {
@@ -10,6 +11,7 @@
   display: flex;
   flex-direction: column;
   transition: background 0.3s ease;
+  background: var(--surface-1);
 }
 
 .project-card:nth-child(2n) {
@@ -17,13 +19,13 @@
 }
 
 .project-card:hover {
-  background: var(--fg-alpha-04);
+  background: var(--surface-2);
 }
 
 .project-media {
   aspect-ratio: 16/9;
   height: clamp(240px, 32vw, 360px);
-  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-overlay) 100%);
+  background: var(--surface-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +44,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 3rem;
   font-weight: 900;
-  color: var(--fg-alpha-12);
+  color: var(--accent-2);
   text-transform: uppercase;
 }
 
@@ -55,13 +57,13 @@
 
 .project-number {
   font-size: 0.65rem;
-  color: var(--fg-muted);
+  color: var(--text-2);
   margin-bottom: 0.5rem;
   transition: color 0.3s ease;
 }
 
 .project-card:hover .project-number {
-  color: var(--accent-secondary);
+  color: var(--accent-4);
 }
 
 .project-name {
@@ -79,7 +81,7 @@
 
 .project-desc {
   font-size: 0.85rem;
-  color: var(--fg-muted);
+  color: var(--text-2);
   line-height: 1.6;
   flex: 1;
   margin-bottom: 1rem;
@@ -100,8 +102,8 @@
 .project-tech span {
   padding: 0.25rem 0.5rem;
   background: transparent;
-  border: 1px solid var(--fg-alpha-20);
-  color: var(--accent-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--accent-3);
   font-size: 0.55rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -124,7 +126,7 @@
 }
 
 .project-meta a:hover {
-  color: var(--accent);
+  color: var(--accent-4);
 }
 
 @media (max-width: 1024px) {

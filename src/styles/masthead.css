@@ -6,7 +6,7 @@
   align-items: center;
   position: sticky;
   top: 0;
-  background: var(--bg);
+  background: var(--surface-1);
   z-index: 100;
 }
 
@@ -29,11 +29,11 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--fg-muted);
+  color: var(--accent-2);
 }
 
 .masthead-date .accent {
-  color: var(--accent);
+  color: var(--accent-1);
 }
 
 .masthead-nav {
@@ -49,7 +49,7 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: var(--border-thin);
+  border: 1px solid var(--border-subtle);
   background: transparent;
   color: var(--fg);
   cursor: pointer;
@@ -115,7 +115,7 @@
   content: "";
   width: 6px;
   height: 6px;
-  border: 1px solid var(--fg);
+  border: 1px solid var(--accent-3);
   transform: rotate(45deg);
   display: inline-block;
   transition: border-color 0.3s ease, transform 0.3s ease;
@@ -128,7 +128,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--accent);
+  background: var(--accent-1);
   transition: width 0.3s ease;
 }
 
@@ -137,7 +137,7 @@
 }
 
 .masthead-nav a:hover::before {
-  border-color: var(--accent);
+  border-color: var(--accent-1);
   transform: rotate(90deg) scale(1.1);
 }
 

@@ -2,11 +2,13 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   border-bottom: var(--border);
+  background: var(--surface-1);
 }
 
 .neovim-content {
   padding: 4rem;
   border-right: var(--border);
+  background: var(--surface-0);
 }
 
 .neovim-title {
@@ -15,6 +17,7 @@
   font-weight: 900;
   margin-bottom: 1.5rem;
   line-height: 1;
+  color: var(--text-1);
 }
 
 .neovim-title span {
@@ -24,12 +27,12 @@
 .neovim-desc {
   font-size: 1rem;
   line-height: 1.8;
-  color: var(--fg-muted);
+  color: var(--text-2);
   max-width: 500px;
 }
 
 .neovim-visual {
-  background: var(--bg-surface);
+  background: var(--surface-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,27 +43,30 @@
   width: 100%;
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
-  color: var(--rp-foam);
+  color: var(--accent-4);
   line-height: 1.6;
+  background: var(--surface-0);
+  border: 1px solid var(--border-subtle);
+  padding: 1.5rem;
 }
 
 .terminal-mock .comment {
-  color: var(--fg-dim);
+  color: var(--text-3);
 }
 
 .terminal-mock .keyword {
-  color: var(--rp-iris);
+  color: var(--accent-3);
 }
 
 .terminal-mock .string {
-  color: var(--rp-gold);
+  color: var(--accent-5);
 }
 
 .terminal-mock .cursor {
   display: inline-block;
   width: 8px;
   height: 14px;
-  background: var(--rp-foam);
+  background: var(--accent-4);
   animation: blink 1s infinite;
 }
 

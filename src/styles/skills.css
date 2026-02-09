@@ -2,11 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   border-bottom: var(--border);
+  background: var(--surface-0);
 }
 
 .skills-sidebar {
   padding: 4rem;
   border-right: var(--border);
+  background: var(--surface-1);
 }
 
 .skills-sidebar h3 {
@@ -19,19 +21,21 @@
 
 .skills-sidebar p {
   font-size: 0.9rem;
-  color: var(--fg-muted);
+  color: var(--text-2);
   line-height: 1.8;
 }
 
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  background: var(--surface-2);
 }
 
 .skill-category {
   padding: 2rem;
-  border-bottom: 1px solid var(--fg-alpha-10);
-  border-right: 1px solid var(--fg-alpha-10);
+  border-bottom: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  background: var(--surface-1);
 }
 
 .skill-category:nth-child(2n) {
@@ -42,7 +46,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--accent-secondary);
+  color: var(--accent-4);
   margin-bottom: 1rem;
 }
 
@@ -54,15 +58,16 @@
 
 .skill-tag {
   padding: 0.4rem 0.8rem;
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--accent-2);
+  color: var(--surface-0);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .skill-tag.accent {
-  background: var(--accent);
+  background: var(--accent-2);
+  color: var(--surface-0);
 }
 
 @media (max-width: 1024px) {

@@ -6,12 +6,14 @@
   padding: 2rem;
   border-bottom: var(--border);
   scroll-margin-top: 70px;
+  background: var(--surface-1);
 }
 
 .section-number {
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   font-weight: 400;
+  color: var(--accent-2);
 }
 
 .section-title {
@@ -19,10 +21,10 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--accent);
+  color: var(--accent-3);
 }
 
 .section-line {
   height: 1px;
-  background: var(--fg);
+  background: var(--accent-4);
 }
