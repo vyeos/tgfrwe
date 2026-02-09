@@ -4,97 +4,82 @@ import '../../styles/blog.css';
 import { personalInfo } from '../../data/portfolio';
 import Masthead from '../../components/Masthead.astro';
 import FooterSection from '../../components/FooterSection.astro';
-import { getCached } from '../../lib/easyblog-cache';
+import { getCached } from '../../lib/hive-cache';
 import { ViewTransitions } from 'astro:transitions';
 
-type EasyBlogPost = {
+type PostSummary = {
   title: string;
-  project_id: string;
-  word_count: number;
-  author: string;
-  author_id: string;
   slug: string;
-  tags: string[];
   excerpt: string;
-  category: string;
-  created_at: string;
-  updated_at: string;
-  html_content?: string;
-  html?: string;
-  content_html?: string;
-  content?: string;
-  cover_image?: string;
-  image?: string;
-  thumbnail?: string;
-  thumbnail_url?: string;
-  featured_image?: string;
-  hero_image?: string;
+  publishedAt: string | null;
+  updatedAt: string | null;
+  category: { name: string; slug: string } | null;
+  tags: Array<{ name: string; slug: string }>;
+  author: { id: string; name: string } | null;
 };
 
-type EasyBlogDetailResponse = {
-  blog: EasyBlogPost;
+type PostDetail = PostSummary & { htmlContent: string };
+
+const { post } = Astro.props as { post: PostDetail | null };
+
+const getCoverImage = (post: unknown) => {
+  if (!post || typeof post !== 'object') return '';
+  const record = post as Record<string, unknown>;
+  const candidates = [
+    record.coverImage,
+    record.cover_image,
+    record.image,
+    record.thumbnail,
+    record.thumbnail_url,
+    record.featured_image,
+    record.hero_image,
+  ];
+
+  const found = candidates.find((item) => typeof item === 'string');
+  return typeof found === 'string' ? found : '';
 };
-
-const { post } = Astro.props as { post: EasyBlogPost | null };
-
-const getCoverImage = (post) =>
-  post?.cover_image ||
-  post?.image ||
-  post?.thumbnail ||
-  post?.thumbnail_url ||
-  post?.featured_image ||
-  post?.hero_image ||
-  '';
 
 export async function getStaticPaths() {
-  const apiUrl = import.meta.env.EASYBLOG_API_URL ?? 'https://api.easyblog.io';
-  const apiKey = import.meta.env.EASYBLOG_API_KEY;
-  const projectId = import.meta.env.EASYBLOG_PROJECT_ID;
+  const apiBaseUrl = import.meta.env.HIVE_API_URL ?? 'https://api.hivecms.online/api/public/v1';
+  const apiKey = import.meta.env.HIVE_API_KEY;
 
-  if (!apiKey || !projectId) {
+  if (!apiKey) {
     return [];
   }
 
   try {
-    const listUrl = new URL(`${apiUrl}/v1/blogs`);
-    listUrl.searchParams.set('project_id', projectId);
+    const listUrl = new URL(`${apiBaseUrl}/${apiKey}/posts`);
     listUrl.searchParams.set('limit', '100');
 
-    const listData = await getCached('easyblog:list', async () => {
+    const listData = await getCached('hive:list', async () => {
       const listResponse = await fetch(listUrl.toString(), {
-        headers: {
-          'x-api-key': apiKey,
-        },
+        headers: {},
       });
 
       if (!listResponse.ok) {
-        return { blogs: [] as EasyBlogPost[] };
+        return { data: [] as PostSummary[] };
       }
 
-      return (await listResponse.json()) as { blogs: EasyBlogPost[] };
+      return (await listResponse.json()) as { data: PostSummary[] };
     });
 
-    const blogs = Array.isArray(listData?.blogs) ? listData.blogs : [];
+    const blogs = Array.isArray(listData?.data) ? listData.data : [];
 
     const detailResults = await Promise.all(
       blogs.map(async (item) => {
-        const detailData = await getCached(`easyblog:post:${item.slug}`, async () => {
-          const detailResponse = await fetch(`${apiUrl}/v1/blogs/${item.slug}`, {
-            headers: {
-              'x-api-key': apiKey,
-            },
+        const detailData = await getCached(`hive:post:${item.slug}`, async () => {
+          const detailResponse = await fetch(`${apiBaseUrl}/${apiKey}/posts/${item.slug}`, {
+            headers: {},
           });
 
           if (!detailResponse.ok) {
             return null;
           }
 
-          return (await detailResponse.json()) as EasyBlogDetailResponse;
+          return (await detailResponse.json()) as PostDetail;
         });
 
-        return detailData?.blog
-          ? { params: { slug: item.slug }, props: { post: detailData.blog } }
-          : null;
+        return detailData ? { params: { slug: item.slug }, props: { post: detailData } } : null;
       })
     );
 
@@ -126,11 +111,11 @@ export async function getStaticPaths() {
       {post ? (
         <article class="blog-post">
           <header class="blog-post-header">
-            <p class="blog-kicker">{post.category || 'Article'}</p>
+            <p class="blog-kicker">{post.category?.name || 'Article'}</p>
             <h1>{post.title}</h1>
             <p class="blog-subhead">{post.excerpt}</p>
             <div class="blog-meta">
-              <span>{post.created_at ? new Date(post.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
+              <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: '2-digit' }) : 'New'}</span>
               <span class="blog-dot"></span>
               <span>{personalInfo.name}</span>
             </div>
@@ -142,7 +127,7 @@ export async function getStaticPaths() {
             </div>
           ) : null}
 
-          <div class="blog-content" set:html={post.html_content || post.html || post.content_html || post.content || ''}></div>
+          <div class="blog-content" set:html={post.htmlContent || ''}></div>
         </article>
       ) : (
         <div class="blog-empty">
