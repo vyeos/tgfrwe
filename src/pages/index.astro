@@ -11,6 +11,7 @@ import SkillsSection from '../components/SkillsSection.astro';
 import NeovimSection from '../components/NeovimSection.astro';
 import ProjectsGrid from '../components/ProjectsGrid.astro';
 import FooterSection from '../components/FooterSection.astro';
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <html lang="en">
@@ -20,6 +21,7 @@ import FooterSection from '../components/FooterSection.astro';
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={siteMetadata.description} />
     <title>{siteMetadata.title}</title>
+    <ViewTransitions />
     
     <!-- Fonts: Editorial New for headlines, Darker Grotesque for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

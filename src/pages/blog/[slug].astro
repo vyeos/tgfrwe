@@ -4,6 +4,7 @@ import '../../styles/blog.css';
 import { personalInfo } from '../../data/portfolio';
 import Masthead from '../../components/Masthead.astro';
 import FooterSection from '../../components/FooterSection.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 type EasyBlogPost = {
   title: string;
@@ -102,6 +103,7 @@ export async function getStaticPaths() {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={post?.excerpt || post?.title || 'Blog post'} />
     <title>{post?.title ? `${post.title} | Blog` : 'Blog'}</title>
+    <ViewTransitions />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -4,6 +4,7 @@ import '../styles/blog.css';
 import { siteMetadata, personalInfo } from '../data/portfolio';
 import Masthead from '../components/Masthead.astro';
 import FooterSection from '../components/FooterSection.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 const posts = [];
 
@@ -76,6 +77,7 @@ const getCoverImage = (post) =>
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={`Blog — ${siteMetadata.description}`} />
     <title>{`Blog | ${siteMetadata.title}`}</title>
+    <ViewTransitions />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
