@@ -20,7 +20,22 @@ type PostSummary = {
 
 type PostDetail = PostSummary & { htmlContent: string };
 
-const { post } = Astro.props as { post: PostDetail | null };
+const apiBaseUrl = import.meta.env.HIVE_API_URL ?? 'https://api.hivecms.online/api/public/v1';
+const apiKey = import.meta.env.HIVE_API_KEY;
+const slugParam = Astro.params.slug;
+
+let { post } = Astro.props as { post: PostDetail | null };
+
+if (import.meta.env.SSR && apiKey && slugParam && !post) {
+  try {
+    const response = await fetch(`${apiBaseUrl}/${apiKey}/posts/${slugParam}`);
+    if (response.ok) {
+      post = (await response.json()) as PostDetail;
+    }
+  } catch (error) {
+    // fallback to empty state
+  }
+}
 
 const getCoverImage = (post: unknown) => {
   if (!post || typeof post !== 'object') return '';
@@ -40,6 +55,10 @@ const getCoverImage = (post: unknown) => {
 };
 
 export async function getStaticPaths() {
+  if (import.meta.env.SSR) {
+    return [];
+  }
+
   const apiBaseUrl = import.meta.env.HIVE_API_URL ?? 'https://api.hivecms.online/api/public/v1';
   const apiKey = import.meta.env.HIVE_API_KEY;
 
