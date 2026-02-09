@@ -44,7 +44,7 @@
   font-family: 'Playfair Display', serif;
   font-size: 3rem;
   font-weight: 900;
-  color: var(--muted-foreground);
+  color: var(--accent-2);
   text-transform: uppercase;
 }
 

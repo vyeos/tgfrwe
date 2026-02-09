@@ -59,7 +59,7 @@
 }
 
 .terminal-mock .string {
-  color: var(--primary);
+  color: var(--accent-2);
 }
 
 .terminal-mock .cursor {
