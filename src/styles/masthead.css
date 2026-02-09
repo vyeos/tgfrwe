@@ -11,7 +11,7 @@
 }
 
 .masthead-logo {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: -0.02em;
@@ -25,14 +25,11 @@
   object-fit: contain;
 }
 
-.masthead-date {
+.masthead-theme {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--secondary);
-}
-
-.masthead-date .accent {
   color: var(--primary);
 }
 
@@ -61,7 +58,9 @@
   height: 2px;
   background: currentColor;
   position: relative;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
 }
 
 .masthead-toggle span::before,
@@ -72,7 +71,9 @@
   width: 16px;
   height: 2px;
   background: currentColor;
-  transition: transform 0.3s ease, top 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    top 0.3s ease;
 }
 
 .masthead-toggle span::before {
@@ -118,11 +119,13 @@
   border: 1px solid var(--secondary);
   transform: rotate(45deg);
   display: inline-block;
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .masthead-nav a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
@@ -168,10 +171,6 @@
     display: inline-flex;
   }
 
-  .masthead-date {
-    display: none;
-  }
-
   .masthead-logo {
     font-size: 1.1rem;
   }
@@ -179,10 +178,5 @@
   .logo-mark {
     width: 30px;
     height: 30px;
-  }
-
-  .masthead-date {
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
   }
 }

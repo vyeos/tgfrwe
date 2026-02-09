@@ -232,7 +232,7 @@ export const projects: Project[] = [
 // ADDITIONAL CONTENT
 // =====================
 export const siteMetadata = {
-  title: "Rudra Patel | Frontend Developer",
+  title: "Rudra Patel",
   description:
     "Frontend developer crafting performant, pixel-perfect web experiences. Specializing in Next.js, TypeScript, and modern web technologies.",
   url: "rudrap.me",
