@@ -38,7 +38,7 @@ const isActive = (path: string) => {
     const toggle = document.querySelector('.masthead-toggle');
     const links = document.querySelectorAll('.masthead-nav a');
 
-    if (!wrapper || !toggle) return;
+    if (!(wrapper instanceof HTMLElement) || !(toggle instanceof HTMLElement)) return;
     if (wrapper.dataset.mastheadInitialized === 'true') return;
     wrapper.dataset.mastheadInitialized = 'true';
 

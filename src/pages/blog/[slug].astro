@@ -5,20 +5,8 @@ import { personalInfo } from '../../data/portfolio';
 import Masthead from '../../components/Masthead.astro';
 import FooterSection from '../../components/FooterSection.astro';
 import { getCached } from '../../lib/hive-cache';
-import { ViewTransitions } from 'astro:transitions';
-
-type PostSummary = {
-  title: string;
-  slug: string;
-  excerpt: string;
-  publishedAt: string | null;
-  updatedAt: string | null;
-  category: { name: string; slug: string } | null;
-  tags: Array<{ name: string; slug: string }>;
-  author: { id: string; name: string } | null;
-};
-
-type PostDetail = PostSummary & { htmlContent: string };
+import { ClientRouter } from 'astro:transitions';
+import type { PostSummary, PostDetail } from '../../types/hive';
 
 const apiBaseUrl = import.meta.env.HIVE_API_URL ?? 'https://api.hivecms.online/api/public/v1';
 const apiKey = import.meta.env.HIVE_API_KEY;
@@ -116,14 +104,11 @@ export async function getStaticPaths() {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={post?.excerpt || post?.title || 'Blog post'} />
     <title>{post?.title ? `${post.title} | Blog` : 'Blog'}</title>
-    <ViewTransitions />
+    <ClientRouter />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" />
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   </head>
 
   <body class="blog-page">

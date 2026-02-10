@@ -1,11 +1,12 @@
 ---
 import '../styles/projects.css';
+import type { Project } from '../types/portfolio';
 
-const { projects } = Astro.props;
+const { projects } = Astro.props as { projects: Project[] };
 ---
 
 <section class="projects-grid">
-  {projects.map((project, index) => (
+  {projects.map((project: Project, index: number) => (
     <article class="project-card">
       <div class="project-media">
         {project.media?.url ? (
@@ -36,12 +37,12 @@ const { projects } = Astro.props;
         <p class={`project-desc ${!project.description ? 'placeholder' : ''}`}>
           {project.description || 'Project description coming soon. This space will showcase the problem solved, approach taken, and impact delivered.'}
         </p>
-        {project.techStack?.length ? (
-          <div class="project-tech">
-            {project.techStack.map((tech) => (
-              <span>{tech}</span>
-            ))}
-          </div>
+            {project.techStack?.length ? (
+              <div class="project-tech">
+                {project.techStack.map((tech: string) => (
+                  <span>{tech}</span>
+                ))}
+              </div>
         ) : null}
         <div class="project-meta">
           {project.githubUrl && (

@@ -1,7 +1,4 @@
 ---
-// Brutalist Editorial Portfolio
-// Inspired by: Print magazines, newspaper layouts, raw typography
-// Aesthetic: Stark black/white contrasts, bold serif typography, grid-breaking layouts
 import { personalInfo, skills, projects, neovimHighlight, siteMetadata } from '../data/portfolio';
 import '../styles/global.css';
 import Masthead from '../components/Masthead.astro';
@@ -11,7 +8,7 @@ import SkillsSection from '../components/SkillsSection.astro';
 import NeovimSection from '../components/NeovimSection.astro';
 import ProjectsGrid from '../components/ProjectsGrid.astro';
 import FooterSection from '../components/FooterSection.astro';
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 ---
 
 <html lang="en">
@@ -21,15 +18,12 @@ import { ViewTransitions } from 'astro:transitions';
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={siteMetadata.description} />
     <title>{siteMetadata.title}</title>
-    <ViewTransitions />
+    <ClientRouter />
     
     <!-- Fonts: Editorial New for headlines, Darker Grotesque for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap">
-    </noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
     
   </head>
   
