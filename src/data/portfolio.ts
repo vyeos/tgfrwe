@@ -169,7 +169,7 @@ export const projects: Project[] = [
     deployedUrl: "https://zendrapdf.app",
     media: {
       type: "video",
-      url: "/zendra.mp4",
+      url: "/zendra-480.mp4",
       alt: "Zendra PDF Preview",
     },
   },
@@ -192,7 +192,7 @@ export const projects: Project[] = [
     deployedUrl: "https://aspdc.vercel.app",
     media: {
       type: "video",
-      url: "/aspdc.mp4",
+      url: "/aspdc-480.mp4",
       alt: "ASPDC Website Preview",
     },
   },
@@ -207,7 +207,7 @@ export const projects: Project[] = [
     deployedUrl: "",
     media: {
       type: "video",
-      url: "/vshl.mp4",
+      url: "/vshl-480.mp4",
       alt: "Vshl Preview",
     },
   },
@@ -222,7 +222,7 @@ export const projects: Project[] = [
     deployedUrl: "",
     media: {
       type: "video",
-      url: "/snake.mp4",
+      url: "/snake-480.mp4",
       alt: "Snake Game Preview",
     },
   },
