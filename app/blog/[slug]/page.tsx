@@ -2,7 +2,6 @@ import "@/styles/global.css";
 import "@/styles/blog.css";
 
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { personalInfo } from "@/data/portfolio";
 import type { PostSummary, PostDetail } from "@/types/hive";
@@ -71,13 +70,14 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
-  const post = await getPost(params.slug);
+  const { slug } = await params;
+  const post = await getPost(slug);
 
   if (!post) {
     notFound();
@@ -87,8 +87,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="blog-page">
-      <Navbar />
-
       <main className="blog-main">
         <article className="blog-post">
           <a className="blog-back" href="/blog">
