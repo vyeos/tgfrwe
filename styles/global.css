@@ -21,6 +21,7 @@
   --input: #26233a;
   --ring: #c4a7e7;
   --font-mono: "Space Mono", monospace;
+  --font-sans: "Playwright", sans-serif;
 }
 
 * {

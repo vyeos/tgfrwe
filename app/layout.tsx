@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Footer from "@/components/FooterSection";
 import "@/styles/global.css";
 import Navbar from "@/components/Navbar";
-import { personalInfo } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Rudra Patel",
@@ -19,7 +17,6 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
-        <Footer personalInfo={personalInfo} variant="minimal" />
       </body>
     </html>
   );

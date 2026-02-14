@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import "@/styles/blog.css";
-
 import Link from "next/link";
-
 import type { PostSummary, PostListResponse } from "@/types/hive";
-import { siteMetadata } from "@/data/portfolio";
+import { personalInfo, siteMetadata } from "@/data/portfolio";
+import FooterSection from "@/components/FooterSection";
 
 export const metadata: Metadata = {
   title: `Blog | ${siteMetadata.title}`,
@@ -161,6 +160,8 @@ export default async function BlogPage() {
           )}
         </div>
       </section>
+
+      <FooterSection personalInfo={personalInfo} variant="minimal" />
     </main>
   );
 }
