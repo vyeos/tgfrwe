@@ -16,17 +16,12 @@
 }
 
 .masthead-logo {
-  font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  position: relative;
+  width: 36px;
+  height: 36px;
 }
 
 .logo-mark {
-  display: block;
-  width: 36px;
-  height: 36px;
   object-fit: contain;
 }
 
