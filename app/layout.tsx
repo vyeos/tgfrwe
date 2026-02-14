@@ -1,6 +1,18 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
+import { Space_Mono, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/Navbar";
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Rudra Patel",
@@ -14,7 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={`${playfairDisplay.variable} ${spaceMono.variable} antialiased font-mono`}
+      >
         <Navbar />
         {children}
       </body>

@@ -12,7 +12,7 @@
 }
 
 .neovim-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-sans);
   font-size: 4rem;
   font-weight: 900;
   margin-bottom: 1.5rem;

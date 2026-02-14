@@ -10,14 +10,14 @@
 }
 
 .section-number {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-sans);
   font-size: 1rem;
   font-weight: 400;
   color: var(--secondary);
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-sans);
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;

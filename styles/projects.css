@@ -41,7 +41,7 @@
 }
 
 .project-placeholder {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-sans);
   font-size: 3rem;
   font-weight: 900;
   color: var(--accent-2);
@@ -67,7 +67,7 @@
 }
 
 .project-name {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-sans);
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1rem;

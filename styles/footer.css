@@ -12,7 +12,7 @@
 }
 
 .footer-headline {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-sans);
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1.1;
