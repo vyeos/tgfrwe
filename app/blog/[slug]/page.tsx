@@ -80,7 +80,20 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = await getPost(slug);
 
   if (!post) {
-    notFound();
+    return (
+      <div className="blog-page">
+        <main className="blog-main">
+          <div className="blog-empty">
+            <a className="blog-back" href="/blog">
+              ← All posts
+            </a>
+            <h2>Post not found.</h2>
+            <p>Double-check the URL or head back to the blog list.</p>
+          </div>
+        </main>
+        <FooterSection personalInfo={personalInfo} />
+      </div>
+    );
   }
 
   const cover = getCoverImage(post);
