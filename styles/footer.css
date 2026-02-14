@@ -130,7 +130,11 @@
 }
 
 @media (max-width: 1024px) {
-  .footer {
+.footer-wrapper {
+  flex-shrink: 0;
+}
+
+.footer {
     grid-template-columns: 1fr;
   }
 

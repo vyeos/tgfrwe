@@ -21,7 +21,7 @@ export default function FooterSection({
     : null;
 
   return (
-    <>
+    <footer className="footer-wrapper">
       {variant === "full" && (
         <footer className="footer">
           <div className="footer-main">
@@ -111,6 +111,6 @@ export default function FooterSection({
 
         <span>Open for collaboration</span>
       </div>
-    </>
+    </footer>
   );
 }

@@ -33,6 +33,7 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -41,6 +42,13 @@ body {
   color: var(--foreground);
   line-height: 1.6;
   overflow-x: hidden;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+body > main {
+  height: 100%;
 }
 
 ::selection {
