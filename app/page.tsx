@@ -9,6 +9,7 @@ import {
 } from "@/data/portfolio";
 import SectionHeader from "@/components/SectionHeader";
 import SkillsSection from "@/components/SkillsSection";
+import FooterSection from "@/components/FooterSection";
 
 export default function HomePage() {
   return (
@@ -22,10 +23,8 @@ export default function HomePage() {
 
       <NeovimSection neovimHighlight={neovimHighlight} />
 
-      <SectionHeader id="work" number="02" title="Selected Work" />
-      <ProjectsGrid projects={projects} />
-
       <SectionHeader id="contact" number="03" title="Get in Touch" />
+      <FooterSection personalInfo={personalInfo} variant="full" />
     </main>
   );
 }

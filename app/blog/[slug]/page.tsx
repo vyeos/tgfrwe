@@ -2,9 +2,9 @@ import "@/styles/global.css";
 import "@/styles/blog.css";
 
 import { notFound } from "next/navigation";
-import Masthead from "@/components/Masthead";
+import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
-import { personalInfo } from "@/app/data/portfolio";
+import { personalInfo } from "@/data/portfolio";
 import type { PostSummary, PostDetail } from "@/types/hive";
 
 const apiBaseUrl =
@@ -87,7 +87,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   return (
     <div className="blog-page">
-      <Masthead />
+      <Navbar />
 
       <main className="blog-main">
         <article className="blog-post">

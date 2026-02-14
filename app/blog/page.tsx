@@ -6,8 +6,6 @@ import Link from "next/link";
 
 import type { PostSummary, PostListResponse } from "@/types/hive";
 import { siteMetadata } from "@/data/portfolio";
-import Masthead from "@/components/Masthead";
-import Footer from "@/components/FooterSection";
 
 export const metadata: Metadata = {
   title: `Blog | ${siteMetadata.title}`,
@@ -65,8 +63,6 @@ export default async function BlogPage() {
 
   return (
     <main className="blog-page">
-      <Masthead />
-
       <section className="blog-main">
         <div className="blog-list">
           {posts.length ? (
@@ -165,8 +161,6 @@ export default async function BlogPage() {
           )}
         </div>
       </section>
-
-      <Footer variant="minimal" personalInfo={{} as any} />
     </main>
   );
 }

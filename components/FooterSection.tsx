@@ -1,18 +1,18 @@
-import "../styles/footer.css";
-import { PersonalInfo } from "../types/portfolio";
+import "@/styles/footer.css";
+import { PersonalInfo } from "@/types/portfolio";
 
-export default function Footer({
+export default function FooterSection({
   personalInfo,
   variant = "minimal",
 }: {
   personalInfo: PersonalInfo;
   variant?: "full" | "minimal";
 }) {
-  const github = personalInfo.socials.find(
+  const github = personalInfo.socials?.find(
     (social) => social.platform === "GitHub",
   );
 
-  const twitter = personalInfo.socials.find(
+  const twitter = personalInfo.socials?.find(
     (social) => social.platform === "X",
   );
 
@@ -34,7 +34,7 @@ export default function Footer({
             <div className="footer-links-title">Connect</div>
             <ul>
               {personalInfo.socials
-                .filter((social) => social.platform !== "Email")
+                ?.filter((social) => social.platform !== "Email")
                 .map((social, index) => (
                   <li key={index}>
                     <a

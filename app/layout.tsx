@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Footer from "@/components/FooterSection";
-import "./globals.css";
-import Masthead from "@/components/Masthead";
+import "@/styles/global.css";
+import Navbar from "@/components/Navbar";
 import { personalInfo } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: "Vyeos – Portfolio",
+  title: "Rudra Patel",
   description: "Frontend Developer Portfolio",
 };
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Masthead />
+        <Navbar />
         {children}
         <Footer personalInfo={personalInfo} variant="minimal" />
       </body>
