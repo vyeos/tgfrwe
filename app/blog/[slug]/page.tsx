@@ -1,7 +1,7 @@
 import "@/app/styles/global.css";
 import "@/app/styles/blog.css";
 
-import FooterSection from "@/components/FooterSection";
+import FooterSection from "@/app/components/FooterSection";
 import { personalInfo } from "@/data/portfolio";
 import type { PostSummary, PostDetail } from "@/types/hive";
 

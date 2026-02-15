@@ -1,5 +1,5 @@
 import "@/app/styles/hero.css";
-import { PersonalInfo } from "../types/portfolio";
+import { PersonalInfo } from "@/types/portfolio";
 
 export default function Hero({ personalInfo }: { personalInfo: PersonalInfo }) {
   return (

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/styles/global.css";
 import { Space_Mono, Playfair_Display } from "next/font/google";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/app/components/Navbar";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",

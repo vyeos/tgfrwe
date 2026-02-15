@@ -1,6 +1,6 @@
 import Image from "next/image";
 import "@/app/styles/projects.css";
-import type { Project } from "../types/portfolio";
+import type { Project } from "@/types/portfolio";
 
 type ProjectsGridProps = {
   projects: Project[];

@@ -4,7 +4,7 @@ import "@/app/styles/blog.css";
 import Link from "next/link";
 import type { PostSummary, PostListResponse } from "@/types/hive";
 import { personalInfo, siteMetadata } from "@/data/portfolio";
-import FooterSection from "@/components/FooterSection";
+import FooterSection from "@/app/components/FooterSection";
 
 export const metadata: Metadata = {
   title: `Blog | ${siteMetadata.title}`,

@@ -1,15 +1,15 @@
-import Hero from "@/components/Hero";
-import ProjectsGrid from "@/components/ProjectsGrid";
-import NeovimSection from "@/components/NeovimSection";
+import Hero from "@/app/components/Hero";
+import ProjectsGrid from "@/app/components/ProjectsGrid";
+import NeovimSection from "@/app/components/NeovimSection";
 import {
   neovimHighlight,
   personalInfo,
   projects,
   skills,
 } from "@/data/portfolio";
-import SectionHeader from "@/components/SectionHeader";
-import SkillsSection from "@/components/SkillsSection";
-import FooterSection from "@/components/FooterSection";
+import SectionHeader from "@/app/components/SectionHeader";
+import SkillsSection from "@/app/components/SkillsSection";
+import FooterSection from "@/app/components/FooterSection";
 
 export default function HomePage() {
   return (
