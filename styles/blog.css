@@ -329,6 +329,7 @@
 .blog-content code {
   font-family: var(--font-mono);
   background: var(--popover);
+  color: var(--accent);
   padding: 0.1rem 0.25rem;
   border-radius: 3px;
 }
