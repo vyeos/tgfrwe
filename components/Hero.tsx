@@ -1,4 +1,4 @@
-import "../styles/hero.css";
+import "@/app/styles/hero.css";
 import { PersonalInfo } from "../types/portfolio";
 
 export default function Hero({ personalInfo }: { personalInfo: PersonalInfo }) {

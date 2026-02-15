@@ -1,5 +1,5 @@
 import Image from "next/image";
-import "../styles/projects.css";
+import "@/app/styles/projects.css";
 import type { Project } from "../types/portfolio";
 
 type ProjectsGridProps = {

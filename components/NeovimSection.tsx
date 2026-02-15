@@ -1,4 +1,4 @@
-import "../styles/neovim.css";
+import "@/app/styles/neovim.css";
 
 type NeovimHighlight = {
   title: string;

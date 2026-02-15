@@ -1,4 +1,4 @@
-import "@/styles/footer.css";
+import "@/app/styles/footer.css";
 import { PersonalInfo } from "@/types/portfolio";
 
 export default function FooterSection({

@@ -1,4 +1,4 @@
-import "../styles/section-header.css";
+import "@/app/styles/section-header.css";
 
 export default function SectionHeader({
   id,

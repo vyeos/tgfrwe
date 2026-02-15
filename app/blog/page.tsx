@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "@/styles/global.css";
-import "@/styles/blog.css";
+import "@/app/styles/global.css";
+import "@/app/styles/blog.css";
 import Link from "next/link";
 import type { PostSummary, PostListResponse } from "@/types/hive";
 import { personalInfo, siteMetadata } from "@/data/portfolio";

@@ -1,4 +1,4 @@
-import "@/styles/skills.css";
+import "@/app/styles/skills.css";
 import type { PersonalInfo, Skill, SkillCategory } from "../types/portfolio";
 
 type SkillsSectionProps = {

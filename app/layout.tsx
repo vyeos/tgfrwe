@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/global.css";
+import "@/app/styles/global.css";
 import { Space_Mono, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/Navbar";
 
