@@ -102,7 +102,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
 
         <div className="blog-filters">
           <div className="blog-filter-group">
-            <span className="blog-filter-label">Category</span>
+            <span className="blog-filter-label">CATEGORY</span>
             <div className="blog-category-pills">
               {categories.map((cat) => (
                 <button
@@ -112,22 +112,22 @@ export default function BlogList({ initialPosts }: BlogListProps) {
                     selectedCategory === cat ? "active" : ""
                   }`}
                 >
-                  {cat}
+                  {cat.toUpperCase()}
                 </button>
               ))}
             </div>
           </div>
 
           <div className="blog-sort-group">
-            <span className="blog-filter-label">Sort by</span>
+            <span className="blog-filter-label">SORT BY</span>
             <div className="blog-sort-controls">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortField)}
                 className="blog-sort-select"
               >
-                <option value="date">Date</option>
-                <option value="name">Name</option>
+                <option value="DATE">DATE</option>
+                <option value="NAME">NAME</option>
               </select>
               <button
                 onClick={() =>

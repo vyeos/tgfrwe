@@ -96,7 +96,7 @@
   color: var(--secondary);
   cursor: pointer;
   transition: all 0.2s ease;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .blog-category-pill:hover {
