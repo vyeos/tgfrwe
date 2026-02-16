@@ -39,6 +39,8 @@
   transform: translateY(-50%);
   color: var(--muted-foreground);
   pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 .blog-search-input {
@@ -152,12 +154,17 @@
   transition: all 0.2s ease;
 }
 
+.blog-sort-order-btn svg {
+  stroke-width: 2.5px;
+}
+
 .blog-sort-order-btn:hover {
   border-color: var(--primary);
   color: var(--primary);
 }
 
 .blog-reset-btn {
+  font-family: var(--font-mono);
   margin-top: 1.5rem;
   background: var(--primary);
   color: white;

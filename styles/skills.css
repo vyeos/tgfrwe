@@ -43,11 +43,14 @@
 }
 
 .skill-category-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--accent);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .skill-list {

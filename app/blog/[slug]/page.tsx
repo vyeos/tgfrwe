@@ -1,7 +1,6 @@
 import "@/styles/global.css";
 import "@/styles/blog.css";
 
-import { notFound } from "next/navigation";
 import FooterSection from "@/components/FooterSection";
 import { personalInfo } from "@/data/portfolio";
 import type { PostSummary, PostDetail } from "@/types/hive";
