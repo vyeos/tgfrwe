@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/global.css";
 import { Space_Mono, Playfair_Display } from "next/font/google";
 import Navbar from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",
@@ -31,6 +32,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
