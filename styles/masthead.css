@@ -1,232 +1,53 @@
 .masthead-wrapper {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
+  padding: 1rem 1.25rem 0;
 }
 
 .masthead {
-  border-bottom: 2px solid var(--border);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--card);
-  position: relative;
-  z-index: 2;
-}
-
-.masthead-logo {
-  position: relative;
-  width: 36px;
-  height: 36px;
-}
-
-.logo-mark {
-  object-fit: contain;
-}
-
-.masthead-theme {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--primary);
-  white-space: nowrap;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--card) 94%, transparent);
+  backdrop-filter: blur(8px);
 }
 
 .masthead-nav {
   display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex: 1;
-}
-
-.masthead-toggle {
-  display: none;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--foreground);
-  cursor: pointer;
-}
-
-.masthead-toggle span {
-  display: block;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  position: relative;
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
-}
-
-.masthead-toggle span::before,
-.masthead-toggle span::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 16px;
-  height: 2px;
-  background: currentColor;
-  transition:
-    transform 0.3s ease,
-    top 0.3s ease;
-}
-
-.masthead-toggle span::before {
-  top: -5px;
-}
-
-.masthead-toggle span::after {
-  top: 5px;
-}
-
-.masthead-wrapper.is-open .masthead-toggle span {
-  background: transparent;
-}
-
-.masthead-wrapper.is-open .masthead-toggle span::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.masthead-wrapper.is-open .masthead-toggle span::after {
-  top: 0;
-  transform: rotate(-45deg);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .masthead-nav a {
-  color: var(--foreground);
   text-decoration: none;
+  color: var(--foreground);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.2rem;
-  font-weight: 700;
+  padding: 0.2rem 0.1rem;
+  border-bottom: 1px solid transparent;
 }
 
-.masthead-nav a::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border: 1px solid var(--secondary);
-  transform: rotate(45deg);
-  display: inline-block;
-  transition:
-    border-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.masthead-nav a::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: width 0.3s ease;
-}
-
-.masthead-nav a:not(.active):hover::after {
-  width: 100%;
-}
-
-.masthead-nav a:not(.active):hover::before {
-  border-color: var(--primary);
-  transform: rotate(90deg) scale(1.1);
-}
-
-/* Active state */
-.masthead-nav a.active {
+.masthead-nav a:hover {
   color: var(--primary);
 }
 
-.masthead-nav a.active::before {
-  border-color: var(--primary);
-  background: var(--primary);
+.masthead-nav a.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
 }
 
-.masthead-nav a.active::after {
-  width: 100%;
-}
+@media (max-width: 640px) {
+  .masthead-wrapper {
+    padding: 0.75rem 0.85rem 0;
+  }
 
-/* Mobile nav - hidden by default */
-.mobile-nav {
-  display: none;
-}
-
-@media (max-width: 600px) {
   .masthead {
-    padding: 0.75rem 1.25rem;
-  }
-
-  .masthead-logo {
-    font-size: 1.1rem;
-  }
-
-  .logo-mark {
-    width: 30px;
-    height: 30px;
-  }
-
-  .masthead-toggle {
-    display: inline-flex;
-  }
-
-  .masthead-theme {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    pointer-events: none;
-  }
-
-  /* Hide desktop nav, show mobile nav */
-  .desktop-nav {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    background: var(--card);
-    border-bottom: 2px solid var(--border);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: 
-      opacity 0.25s ease,
-      transform 0.25s ease;
-  }
-
-  .mobile-nav a {
-    padding: 1rem 1.25rem;
-    border-top: 1px solid var(--border);
-    font-size: 0.8rem;
-  }
-
-  .mobile-nav a::after {
-    bottom: 0;
-  }
-
-  .masthead-wrapper.is-open .mobile-nav {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    padding: 0.75rem;
   }
 }

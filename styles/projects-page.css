@@ -1,0 +1,33 @@
+.projects-page {
+  width: 100%;
+  padding: 2rem 1rem 3rem;
+}
+
+.projects-main {
+  max-width: 90rem;
+  margin: 0 auto;
+  border: 2px solid var(--border);
+  background: var(--card);
+}
+
+.projects-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid var(--border);
+  background: linear-gradient(120deg, rgba(235, 111, 146, 0.14), rgba(156, 207, 216, 0.14));
+}
+
+.projects-header h1 {
+  font-family: var(--font-playfair), serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.1;
+}
+
+@media (max-width: 640px) {
+  .projects-page {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .projects-header {
+    padding: 1rem;
+  }
+}
