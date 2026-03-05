@@ -1,8 +1,6 @@
 import Hero from "@/components/Hero";
 import ProjectsGrid from "@/components/ProjectsGrid";
-import NeovimSection from "@/components/NeovimSection";
 import {
-  neovimHighlight,
   personalInfo,
   projects,
   skills,
@@ -19,9 +17,8 @@ export default function HomePage() {
       <SectionHeader id="about" number="01" title="About & Expertise" />
       <SkillsSection personalInfo={personalInfo} skills={skills} />
 
+      <SectionHeader id="work" number="02" title="Selected Work" />
       <ProjectsGrid projects={projects} />
-
-      <NeovimSection neovimHighlight={neovimHighlight} />
 
       <SectionHeader id="contact" number="03" title="Get in Touch" />
       <FooterSection personalInfo={personalInfo} variant="full" />
