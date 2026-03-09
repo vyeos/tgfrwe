@@ -49,9 +49,16 @@
   background: var(--card);
   border: 2px solid var(--border);
   color: var(--foreground);
-  font-family: var(--font-sans);
-  font-size: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
   transition: all 0.2s ease;
+}
+
+.blog-search-input::placeholder {
+  font-family: var(--font-mono);
+  color: var(--muted-foreground);
+  letter-spacing: 0.04em;
 }
 
 .blog-search-input:focus {
