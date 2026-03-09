@@ -14,6 +14,7 @@ export type PostSummary = {
   title: string;
   slug: string;
   excerpt: string;
+  readingTimeMinutes: number;
   publishedAt: string | null;
   updatedAt: string;
   category: Category | null;
@@ -21,7 +22,10 @@ export type PostSummary = {
   author: { id: string; name: string } | null;
 };
 
-export type PostDetail = PostSummary & { contentHtml: string; contentJson: unknown };
+export type PostDetail = PostSummary & {
+  contentHtml: string;
+  contentJson: unknown;
+};
 
 export type PostListResponse = {
   ok: boolean;

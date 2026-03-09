@@ -9,7 +9,7 @@ import {
   ArrowRight,
   FileText,
 } from "lucide-react";
-import type { PostSummary } from "@/types/hive";
+import type { PostSummary } from "@/types/vine";
 
 interface BlogListProps {
   initialPosts: PostSummary[];
@@ -36,6 +36,12 @@ function getCoverImage(post: unknown): string {
   const found = candidates.find((item) => typeof item === "string");
 
   return typeof found === "string" ? found : "";
+}
+
+function formatReadingTime(minutes: number): string {
+  const safeMinutes = Math.max(1, Math.round(minutes));
+
+  return `${safeMinutes} min read`;
 }
 
 export default function BlogList({ initialPosts }: BlogListProps) {
@@ -182,6 +188,9 @@ export default function BlogList({ initialPosts }: BlogListProps) {
                 </div>
 
                 <div className="blog-card-footer">
+                  <span className="blog-reading-time">
+                    {formatReadingTime(post.readingTimeMinutes)}
+                  </span>
                   <span className="blog-card-link">
                     Read more
                     <ArrowRight className="arrow" size={14} strokeWidth={2} />

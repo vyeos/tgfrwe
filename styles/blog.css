@@ -283,6 +283,17 @@
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border);
   background: var(--popover);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.blog-reading-time {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted-foreground);
 }
 
 .blog-card-link {
@@ -293,6 +304,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  margin-left: auto;
 }
 
 .blog-card-link .arrow {

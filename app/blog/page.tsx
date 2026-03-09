@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import "@/styles/blog.css";
-import type { PostSummary, PostListResponse } from "@/types/hive";
+import type { PostSummary, PostListResponse } from "@/types/vine";
 import { personalInfo, siteMetadata } from "@/data/portfolio";
 import FooterSection from "@/components/FooterSection";
 import BlogList from "@/components/BlogList";

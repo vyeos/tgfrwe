@@ -3,7 +3,12 @@ import "@/styles/blog.css";
 
 import FooterSection from "@/components/FooterSection";
 import { personalInfo } from "@/data/portfolio";
-import type { PostSummary, PostDetail, PostDetailResponse, PostListResponse } from "@/types/hive";
+import type {
+  PostSummary,
+  PostDetail,
+  PostDetailResponse,
+  PostListResponse,
+} from "@/types/vine";
 
 const apiBaseUrl =
   process.env.HIVE_API_URL ?? "https://vinecms.tech/api/public/v1";
