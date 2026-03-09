@@ -10,25 +10,41 @@ export type Author = {
 };
 
 export type PostSummary = {
+  id: string;
   title: string;
   slug: string;
   excerpt: string;
   publishedAt: string | null;
-  updatedAt: string | null;
+  updatedAt: string;
   category: Category | null;
   tags: Tag[];
   author: { id: string; name: string } | null;
 };
 
-export type PostDetail = PostSummary & { htmlContent: string };
+export type PostDetail = PostSummary & { contentHtml: string; contentJson: unknown };
 
 export type PostListResponse = {
-  data: PostSummary[];
-  total: number;
-  offset: number;
-  limit: number;
+  ok: boolean;
+  workspace: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  posts: PostSummary[];
+};
+
+export type PostDetailResponse = {
+  ok: boolean;
+  workspace: {
+    id: string;
+    name: string;
+    slug: string;
+  };
+  post: PostDetail;
 };
 
 export type ErrorResponse = {
-  message: string;
+  ok?: false;
+  error?: string;
+  message?: string;
 };

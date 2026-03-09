@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import "@/styles/blog.css";
-import Link from "next/link";
 import type { PostSummary, PostListResponse } from "@/types/hive";
 import { personalInfo, siteMetadata } from "@/data/portfolio";
 import FooterSection from "@/components/FooterSection";
@@ -13,16 +12,17 @@ export const metadata: Metadata = {
 };
 
 const apiBaseUrl =
-  process.env.HIVE_API_URL ?? "https://api.hivecms.online/api/public/v1";
+  process.env.HIVE_API_URL ?? "https://vinecms.tech/api/public/v1";
 
 const apiKey = process.env.HIVE_API_KEY;
+const workspaceSlug = process.env.HIVE_WORKSPACE_SLUG;
 
 async function getPosts(): Promise<PostSummary[]> {
-  if (!apiKey) return [];
+  if (!apiKey || !workspaceSlug) return [];
 
   try {
     const listUrl = new URL(`${apiBaseUrl}/${apiKey}/posts`);
-    listUrl.searchParams.set("limit", "50");
+    listUrl.searchParams.set("workspace", workspaceSlug);
 
     const response = await fetch(listUrl.toString(), {
       next: { revalidate: 60 }, // ISR (cache 60s)
@@ -32,7 +32,7 @@ async function getPosts(): Promise<PostSummary[]> {
 
     const data = (await response.json()) as PostListResponse;
 
-    return Array.isArray(data?.data) ? data.data : [];
+    return Array.isArray(data?.posts) ? data.posts : [];
   } catch {
     return [];
   }

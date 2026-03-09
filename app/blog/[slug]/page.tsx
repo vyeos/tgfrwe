@@ -3,12 +3,13 @@ import "@/styles/blog.css";
 
 import FooterSection from "@/components/FooterSection";
 import { personalInfo } from "@/data/portfolio";
-import type { PostSummary, PostDetail } from "@/types/hive";
+import type { PostSummary, PostDetail, PostDetailResponse, PostListResponse } from "@/types/hive";
 
 const apiBaseUrl =
-  process.env.HIVE_API_URL ?? "https://api.hivecms.online/api/public/v1";
+  process.env.HIVE_API_URL ?? "https://vinecms.tech/api/public/v1";
 
 const apiKey = process.env.HIVE_API_KEY;
+const workspaceSlug = process.env.HIVE_WORKSPACE_SLUG;
 
 function getCoverImage(post: any): string {
   if (!post || typeof post !== "object") return "";
@@ -28,16 +29,20 @@ function getCoverImage(post: any): string {
 }
 
 async function getPost(slug: string): Promise<PostDetail | null> {
-  if (!apiKey) return null;
+  if (!apiKey || !workspaceSlug) return null;
 
   try {
-    const response = await fetch(`${apiBaseUrl}/${apiKey}/posts/${slug}`, {
+    const postUrl = new URL(`${apiBaseUrl}/${apiKey}/posts/${slug}`);
+    postUrl.searchParams.set("workspace", workspaceSlug);
+
+    const response = await fetch(postUrl.toString(), {
       next: { revalidate: 60 }, // ISR
     });
 
     if (!response.ok) return null;
 
-    return await response.json();
+    const data = (await response.json()) as PostDetailResponse;
+    return data?.post ?? null;
   } catch {
     return null;
   }
@@ -45,11 +50,11 @@ async function getPost(slug: string): Promise<PostDetail | null> {
 
 // 🔹 Replaces getStaticPaths
 export async function generateStaticParams() {
-  if (!apiKey) return [];
+  if (!apiKey || !workspaceSlug) return [];
 
   try {
     const listUrl = new URL(`${apiBaseUrl}/${apiKey}/posts`);
-    listUrl.searchParams.set("limit", "100");
+    listUrl.searchParams.set("workspace", workspaceSlug);
 
     const response = await fetch(listUrl.toString(), {
       next: { revalidate: 60 },
@@ -57,8 +62,8 @@ export async function generateStaticParams() {
 
     if (!response.ok) return [];
 
-    const data = await response.json();
-    const blogs: PostSummary[] = Array.isArray(data?.data) ? data.data : [];
+    const data = (await response.json()) as PostListResponse;
+    const blogs: PostSummary[] = Array.isArray(data?.posts) ? data.posts : [];
 
     return blogs.map((post) => ({
       slug: post.slug,
@@ -135,7 +140,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           <div
             className="blog-content"
             dangerouslySetInnerHTML={{
-              __html: post.htmlContent || "",
+              __html: post.contentHtml || "",
             }}
           />
         </article>
