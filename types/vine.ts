@@ -24,26 +24,15 @@ export type PostSummary = {
 
 export type PostDetail = PostSummary & {
   contentHtml: string;
-  contentJson: unknown;
 };
 
 export type PostListResponse = {
   ok: boolean;
-  workspace: {
-    id: string;
-    name: string;
-    slug: string;
-  };
   posts: PostSummary[];
 };
 
 export type PostDetailResponse = {
   ok: boolean;
-  workspace: {
-    id: string;
-    name: string;
-    slug: string;
-  };
   post: PostDetail;
 };
 

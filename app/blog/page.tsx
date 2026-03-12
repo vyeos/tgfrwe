@@ -12,19 +12,15 @@ export const metadata: Metadata = {
 };
 
 const apiBaseUrl =
-  process.env.HIVE_API_URL ?? "https://vinecms.tech/api/public/v1";
+  process.env.VINE_API_URL ?? "https://vinecms.tech/api/public/v1";
 
-const apiKey = process.env.HIVE_API_KEY;
-const workspaceSlug = process.env.HIVE_WORKSPACE_SLUG;
+const apiKey = process.env.VINE_API_KEY;
 
 async function getPosts(): Promise<PostSummary[]> {
-  if (!apiKey || !workspaceSlug) return [];
+  if (!apiKey) return [];
 
   try {
-    const listUrl = new URL(`${apiBaseUrl}/${apiKey}/posts`);
-    listUrl.searchParams.set("workspace", workspaceSlug);
-
-    const response = await fetch(listUrl.toString(), {
+    const response = await fetch(`${apiBaseUrl}/${apiKey}/posts`, {
       next: { revalidate: 60 }, // ISR (cache 60s)
     });
 

@@ -11,10 +11,9 @@ import type {
 } from "@/types/vine";
 
 const apiBaseUrl =
-  process.env.HIVE_API_URL ?? "https://vinecms.tech/api/public/v1";
+  process.env.VINE_API_URL ?? "https://vinecms.tech/api/public/v1";
 
-const apiKey = process.env.HIVE_API_KEY;
-const workspaceSlug = process.env.HIVE_WORKSPACE_SLUG;
+const apiKey = process.env.VINE_API_KEY;
 
 function getCoverImage(post: any): string {
   if (!post || typeof post !== "object") return "";
@@ -34,13 +33,10 @@ function getCoverImage(post: any): string {
 }
 
 async function getPost(slug: string): Promise<PostDetail | null> {
-  if (!apiKey || !workspaceSlug) return null;
+  if (!apiKey) return null;
 
   try {
-    const postUrl = new URL(`${apiBaseUrl}/${apiKey}/posts/${slug}`);
-    postUrl.searchParams.set("workspace", workspaceSlug);
-
-    const response = await fetch(postUrl.toString(), {
+    const response = await fetch(`${apiBaseUrl}/${apiKey}/posts/${slug}`, {
       next: { revalidate: 60 }, // ISR
     });
 
@@ -55,13 +51,10 @@ async function getPost(slug: string): Promise<PostDetail | null> {
 
 // 🔹 Replaces getStaticPaths
 export async function generateStaticParams() {
-  if (!apiKey || !workspaceSlug) return [];
+  if (!apiKey) return [];
 
   try {
-    const listUrl = new URL(`${apiBaseUrl}/${apiKey}/posts`);
-    listUrl.searchParams.set("workspace", workspaceSlug);
-
-    const response = await fetch(listUrl.toString(), {
+    const response = await fetch(`${apiBaseUrl}/${apiKey}/posts`, {
       next: { revalidate: 60 },
     });
 
