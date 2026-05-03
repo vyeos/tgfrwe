@@ -23,8 +23,8 @@ export default function Hero({ personalInfo }: { personalInfo: PersonalInfo }) {
           </div>
 
           <div className="stat-item">
-            <div className="stat-number">2nd</div>
-            <div className="stat-label">Year at Adani University</div>
+            <div className="stat-number">{personalInfo.education.year}</div>
+            <div className="stat-label">{personalInfo.education.institution}</div>
           </div>
         </div>
 

@@ -68,9 +68,9 @@ export const personalInfo: PersonalInfo = {
   },
   email: "rudranpatel0980@gmail.com",
   education: {
-    institution: "Adani University",
+    institution: "at Adani University",
     degree: "Bachelor's in Computer Science",
-    year: "2nd Year",
+    year: "3rd Year of CS",
     status: "Currently Pursuing",
   },
   socials: [
@@ -117,7 +117,9 @@ export const skills: Skill[] = [
 
   // Tools & Frameworks
   { name: "Neovim", category: "tool" },
+  { name: "Zed", category: "tool" },
   { name: "Opencode", category: "tool" },
+  { name: "Codex", category: "tool" },
   { name: "TanStack Start", category: "tool" },
   { name: "Git", category: "tool" },
   { name: "GitHub", category: "tool" },
@@ -194,6 +196,21 @@ export const projects: Project[] = [
       type: "video",
       url: "/aspdc-480.mp4",
       alt: "ASPDC Website Preview",
+    },
+  },
+  {
+    id: "visionandpath",
+    name: "Vision And Path",
+    description:
+      "Freelance project to create a portfolio website for a company that helps you to get jobs",
+    duration: "Jan 2026",
+    techStack: ["NextJS", "Shadcn", "TailwindCSS"],
+    githubUrl: "https://github.com/Sahil-796/vnp",
+    deployedUrl: "visionandpath.com",
+    media: {
+      type: "video",
+      url: "/vnp-480.mp4",
+      alt: "Vision and Path Preview",
     },
   },
   {
